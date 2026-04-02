@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleet_document_action" model="ir.actions.act_window">
+        <field name="name">Vehicle Document</field>
+        <field name="res_model">fleet.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create new document
+            </p>
+        </field>
+    </record>
+
+    <record id="fleet_document_view_tree" model="ir.ui.view">
+        <field name="name">fleet.document.view.tree</field>
+        <field name="model">fleet.document</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <field name="document_type"/>
+                <field name="fleet_id"/>
+                <field name="user_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fleet_document_view_form" model="ir.ui.view">
+        <field name="name">fleet.document.view.form</field>
+        <field name="model">fleet.document</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button name="action_set_to_lost" string="Set to Lost" type="object" invisible="state == 'cancel'" />
+                    <button name="action_set_to_destroyed" string="Set to Destroyed" type="object" invisible="state == 'cancel'" />
+                    <button name="action_set_to_sold" string="Set to Sold" type="object" invisible="state != 'available'" />
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ('cancel', 'in_loan')" />
+                    <button name="action_draft" string="Set to Available" type="object" invisible="state in ('in_loan', 'available')" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_loan"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Document Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="document_type"/>
+                            <field name="fleet_id" options="{'no_create': True}"/>
+                            <field name="user_id" options="{'no_create': True, 'no_open':True}"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                            <field name="document_link" widget="url"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Attachment" string="Attachment">
+                            <field name="document_attachment_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="fleet_document_view_search" model="ir.ui.view">
+        <field name="name">fleet.document.view.search</field>
+        <field name="model">fleet.document</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name" filter_domain="['|', '|', ('name', 'ilike', self), ('document_type', 'ilike', self), ('fleet_id', 'ilike', self)]"/>
+
+                <filter string="Available" name="available" domain="[('state','=','available')]" />
+                <group string="Group By">
+                    <filter string="Document Type" name="document_type" context="{'group_by':'document_type'}"/>
+                    <filter string="Fleet" name="fleet_id" context="{'group_by':'fleet_id'}"/>
+                    <filter string="Responsible" name="user_id" context="{'group_by':'user_id'}"/>
+                    <filter string="State" name="state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>

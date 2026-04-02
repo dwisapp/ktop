@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_expense_settlement_user,fjr_kasir_expense.hr.expense.settlement,model_hr_expense_settlement,base.group_user,1,1,1,0
+access_hr_expense_settlement_manager,fjr_kasir_expense.hr.expense.settlement,model_hr_expense_settlement,hr_expense.group_hr_expense_manager,1,1,1,1
+access_hr_expense_settlement_line_user,fjr_kasir_expense.hr.expense.settlement.line,model_hr_expense_settlement_line,base.group_user,1,1,1,0
+access_hr_expense_settlement_line_manager,fjr_kasir_expense.hr.expense.settlement.line,model_hr_expense_settlement_line,hr_expense.group_hr_expense_manager,1,1,1,1

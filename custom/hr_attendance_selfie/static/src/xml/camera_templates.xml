@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Camera Widget Template -->
+    <t t-name="hr_attendance_selfie.CameraWidget" owl="1">
+        <div class="attendance-camera-modal">
+            <div class="attendance-camera-container">
+
+                <!-- Header -->
+                <div class="attendance-camera-header">
+                    <h3>
+                        <i class="fa fa-camera"/>
+                        <span t-if="props.isCheckIn">Check In - Selfie Required</span>
+                        <span t-else="">Check Out - Selfie Required</span>
+                    </h3>
+                    <button class="btn btn-sm btn-light" t-on-click="() => props.close()">
+                        <i class="fa fa-times"/>
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                <div t-if="state.error" class="attendance-camera-error">
+                    <i class="fa fa-exclamation-triangle"/>
+                    <span t-esc="state.error"/>
+                </div>
+
+                <!-- GPS Info -->
+                <div class="attendance-gps-info">
+                    <div class="gps-status">
+                        <i class="fa fa-map-marker"/>
+                        <span t-if="state.gpsLocation">
+                            GPS Detected: <span t-esc="state.gpsLocation.latitude.toFixed(6)"/>,
+                            <span t-esc="state.gpsLocation.longitude.toFixed(6)"/>
+                            (±<span t-esc="state.gpsLocation.accuracy.toFixed(0)"/>m)
+                        </span>
+                        <span t-else="">GPS: Detecting location...</span>
+                    </div>
+                </div>
+
+                <!-- Camera Preview -->
+                <div class="attendance-camera-preview">
+                    <!-- Live Video Preview -->
+                    <t t-if="state.cameraActive and !state.showPreview">
+                        <video ref="video" autoplay="autoplay" playsinline="playsinline"/>
+                        <canvas ref="canvas" style="display: none;"/>
+                    </t>
+
+                    <!-- Captured Photo Preview -->
+                    <t t-if="state.showPreview and state.photoCapture">
+                        <img t-att-src="state.photoCapture" alt="Captured Photo"/>
+                    </t>
+
+                    <!-- Loading State -->
+                    <t t-if="!state.cameraActive and !state.showPreview">
+                        <div class="attendance-camera-loading">
+                            <i class="fa fa-spinner fa-spin"/>
+                            <p>Starting camera...</p>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="attendance-camera-actions">
+                    <!-- Cancel Button -->
+                    <button class="btn-cancel" t-on-click="() => props.close()">
+                        <i class="fa fa-times"/>
+                        Cancel
+                    </button>
+
+                    <!-- Capture Button (when camera is active) -->
+                    <button
+                        t-if="state.cameraActive and !state.showPreview"
+                        class="btn-capture"
+                        t-on-click="() => this.capturePhoto()">
+                        <i class="fa fa-camera"/>
+                        Capture Photo
+                    </button>
+
+                    <!-- Retake Button (after capture) -->
+                    <button
+                        t-if="state.showPreview"
+                        class="btn-retake"
+                        t-on-click="() => this.retakePhoto()">
+                        <i class="fa fa-refresh"/>
+                        Retake
+                    </button>
+
+                    <!-- Submit Button (after capture) -->
+                    <button
+                        t-if="state.showPreview"
+                        class="btn-submit"
+                        t-on-click="() => this.submitAttendance(props.isCheckIn)">
+                        <i class="fa fa-check"/>
+                        <span t-if="props.isCheckIn">Submit Check-In</span>
+                        <span t-else="">Submit Check-Out</span>
+                    </button>
+
+                    <!-- Start Camera Button (if not active) -->
+                    <button
+                        t-if="!state.cameraActive and !state.showPreview"
+                        class="btn-capture"
+                        t-on-click="() => this.startCamera()">
+                        <i class="fa fa-video-camera"/>
+                        Start Camera
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+</templates>

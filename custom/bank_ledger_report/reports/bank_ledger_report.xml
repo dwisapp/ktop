@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_bank_ledger_report" model="ir.actions.report">
+        <field name="name">Bank Ledger Report</field>
+        <field name="model">bank.ledger.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bank_ledger_report.report_bank_ledger_document</field>
+        <field name="report_file">bank_ledger_report.report_bank_ledger_document</field>
+        <field name="binding_model_id" ref="model_bank_ledger_wizard"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Bank Ledger - %s' % (object.journal_id.name)</field>
+    </record>
+
+    <!-- Paper format - A4 Landscape for better table view -->
+    <record id="paperformat_bank_ledger" model="report.paperformat">
+        <field name="name">Bank Ledger Paper Format</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_bank_ledger_report" model="ir.actions.report">
+        <field name="paperformat_id" ref="paperformat_bank_ledger"/>
+    </record>
+
+    <!-- QWeb Report Template -->
+    <template id="report_bank_ledger_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="data" t-value="o._get_report_data()"/>
+                <div class="page">
+                    <style>
+                        .bank-ledger-report {
+                            font-family: Arial, sans-serif;
+                        }
+                        .bank-ledger-report h2 {
+                            text-align: center;
+                            margin-bottom: 20px;
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+                        .bank-ledger-report .header-info {
+                            margin-bottom: 20px;
+                        }
+                        .bank-ledger-report .header-info table {
+                            width: 100%;
+                            border: none;
+                        }
+                        .bank-ledger-report .header-info td {
+                            padding: 3px 0;
+                            border: none;
+                        }
+                        .bank-ledger-report .header-info td:first-child {
+                            width: 150px;
+                            font-weight: bold;
+                        }
+                        .bank-ledger-report .transaction-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 20px;
+                            font-size: 11px;
+                        }
+                        .bank-ledger-report .transaction-table th {
+                            background-color: #f0f0f0;
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                            text-align: left;
+                            font-weight: bold;
+                        }
+                        .bank-ledger-report .transaction-table td {
+                            border: 1px solid #ddd;
+                            padding: 6px 8px;
+                        }
+                        .bank-ledger-report .transaction-table .text-right {
+                            text-align: right;
+                        }
+                        .bank-ledger-report .transaction-table .text-center {
+                            text-align: center;
+                        }
+                        .bank-ledger-report .summary-section {
+                            margin-top: 20px;
+                            float: right;
+                            width: 350px;
+                        }
+                        .bank-ledger-report .summary-section table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+                        .bank-ledger-report .summary-section td {
+                            padding: 5px 10px;
+                            border: 1px solid #ddd;
+                        }
+                        .bank-ledger-report .summary-section td:first-child {
+                            font-weight: bold;
+                            background-color: #f0f0f0;
+                        }
+                        .bank-ledger-report .summary-section td:last-child {
+                            text-align: right;
+                        }
+                        .bank-ledger-report .summary-section .total-row {
+                            background-color: #e8e8e8;
+                            font-weight: bold;
+                        }
+                    </style>
+
+                    <div class="bank-ledger-report">
+                        <!-- Header -->
+                        <h2>BANK LEDGER REPORT</h2>
+
+                        <!-- Bank Information -->
+                        <div class="header-info">
+                            <table>
+                                <tr>
+                                    <td>Bank Name:</td>
+                                    <td><t t-esc="data['journal_name']"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Account No:</td>
+                                    <td><t t-esc="data['account_number']"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Period:</td>
+                                    <td><t t-esc="data['date_from']"/> - <t t-esc="data['date_to']"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Opening Balance:</td>
+                                    <td>
+                                        <t t-esc="data['currency'].symbol"/>
+                                        <t t-esc="'{:,.2f}'.format(data['opening_balance'])"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Transaction Table -->
+                        <table class="transaction-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;">Date</th>
+                                    <th style="width: 15%;">Reference</th>
+                                    <th style="width: 25%;">Description</th>
+                                    <th style="width: 15%;">Partner</th>
+                                    <th style="width: 12%;" class="text-right">Debit</th>
+                                    <th style="width: 12%;" class="text-right">Credit</th>
+                                    <th style="width: 13%;" class="text-right">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="data['lines']">
+                                    <t t-foreach="data['lines']" t-as="line">
+                                        <tr>
+                                            <td><t t-esc="line['date'].strftime('%d/%m/%Y')"/></td>
+                                            <td><t t-esc="line['reference']"/></td>
+                                            <td><t t-esc="line['description']"/></td>
+                                            <td><t t-esc="line['partner']"/></td>
+                                            <td class="text-right">
+                                                <t t-if="line['debit'] != 0">
+                                                    <t t-esc="'{:,.2f}'.format(line['debit'])"/>
+                                                </t>
+                                                <t t-if="line['debit'] == 0">-</t>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-if="line['credit'] != 0">
+                                                    <t t-esc="'{:,.2f}'.format(line['credit'])"/>
+                                                </t>
+                                                <t t-if="line['credit'] == 0">-</t>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-esc="'{:,.2f}'.format(line['balance'])"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <t t-if="not data['lines']">
+                                    <tr>
+                                        <td colspan="7" class="text-center">No transactions found for the selected period.</td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- Summary Section -->
+                        <div class="summary-section">
+                            <table>
+                                <tr>
+                                    <td>Total Debit:</td>
+                                    <td>
+                                        <t t-esc="data['currency'].symbol"/>
+                                        <t t-esc="'{:,.2f}'.format(data['total_debit'])"/>
+                                    </td>
+                                
+                                <tr>
+                                    <td>Total Credit:</td>
+                                    <td>
+                                        <t t-esc="data['currency'].symbol"/>
+                                        <t t-esc="'{:,.2f}'.format(data['total_credit'])"/>
+                                    </td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td>Closing Balance:</td>
+                                    <td>
+                                        <t t-esc="data['currency'].symbol"/>
+                                        <t t-esc="'{:,.2f}'.format(data['closing_balance'])"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_driver"/>
+            </xpath>
+        
+        </field>
+    </record>
+
+    
+    <record id="res_partner_view_search_inherit" model="ir.ui.view">
+        <field name="name">res.partner.view.search.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <separator />
+                <filter string="Driver" name="driver" domain="[('is_driver', '=', True)]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="res_partner_driver_action" model="ir.actions.act_window">
+        <field name="name">Driver</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain"></field>
+        <field name="context">{'default_is_driver': True,'search_default_driver': 1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new driver.
+            </p>      
+        </field>
+    </record>
+
+
+
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_payment_register_deduction_action" model="ir.actions.act_window">
+        <field name="name">Payment Deduction</field>
+        <field name="res_model">account.payment.register.deduction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to Create New Deduction
+            </p>
+        </field>
+    </record>
+
+    <record id="account_payment_register_deduction_view_tree" model="ir.ui.view">
+        <field name="name">account.payment.register.deduction.view.tree</field>
+        <field name="model">account.payment.register.deduction</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="account_payment_register_deduction_view_form" model="ir.ui.view">
+        <field name="name">account.payment.register.deduction.view.form</field>
+        <field name="model">account.payment.register.deduction</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                   <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Deduction">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="account_id" />
+                                    <field name="amount_type" />
+                                    <field name="amount" />
+                                    <field name="before_taxes" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem
+        id="account_payment_register_deduction_menu"
+        name="Payment Deduction"
+        action="account_payment_register_deduction_action"
+        parent="account.account_invoicing_menu"
+        sequence="10"/>
+
+</odoo>

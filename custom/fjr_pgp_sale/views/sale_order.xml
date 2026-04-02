@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.view.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <field name="display_button_create_delivery_note" invisible="1"/>
+            </form>
+            <header position="inside">
+                <button name="action_create_delivery_note" string="Create Delivery Note" type="object" class="oe_highlight" invisible="state not in ('sale','done') or not display_button_create_delivery_note"/>
+            </header>
+            <div name="button_box">
+            
+                <button name="action_view_delivery_notes" type="object" class="oe_stat_button" icon="fa-truck" invisible="delivery_note_count == 0">
+                    <field name="delivery_note_count" widget="statinfo" string="Delivery Notes"/>
+                </button>
+            </div>
+            <page name="order_lines" position="after">
+                <page name="order_kerja" string="Order Kerja">
+                    <group>
+                        <group>
+                            <field name="jenis_barang" readonly="state in ('cancel','sale')" />
+                            <field name="kapal_id" readonly="state in ('cancel','sale')" />
+                        </group>
+                        <group>
+                            <field name="tempat_muat_id" readonly="state in ('cancel','sale')" options="{'no_create':True, 'no_open': True}" />
+                            <field name="tempat_muat" readonly="state in ('cancel','sale')" />
+                            <field name="tujuan_bongkar_id" readonly="state in ('cancel','sale')" options="{'no_create':True, 'no_open': True}"/>
+                            <field name="tujuan_bongkar" readonly="state in ('cancel','sale')" />
+                        </group>
+                    </group>
+                </page>
+            </page>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom']" position="after">
+                <field name="other_quantity" optional="hide" />
+                <field name="other_uom_id" optional="hide" options="{'no_create':True}" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_sale_stock_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.sale.stock.view.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock_qty"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='scheduled_date'][0]" position="after">
+                <field name="delivery_date" readonly="parent.state in ('cancel','sale')" />
+            </xpath> -->
+            <!-- <xpath expr="//field[@name='scheduled_date'][1]" position="after">
+            </xpath> -->
+            <xpath expr="//field[@name='order_line']//form//field[@name='scheduled_date']" position="after">
+                <field name="delivery_date" readonly="parent.state in ('cancel',)" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='scheduled_date']" position="after">
+                <field name="delivery_date" readonly="parent.state in ('cancel',)" />
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>

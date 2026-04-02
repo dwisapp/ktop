@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_verifikasi_bca_view_form" model="ir.ui.view">
+        <field name="name">wizard.verifikasi.bca.view.form</field>
+        <field name="model">wizard.verifikasi.bca</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <label for="kode_verifikasi"/>
+                    <div class="row">
+                    
+                        <field name="kode_verifikasi" class="oe_inline" nolabel="1"/> 
+                        <button name="action_generate_kode_verifikasi" string="Kirim OTP" type="object" class="oe_inline ms-3 btn-primary"/>
+                    </div>
+                    <field name="current_kode_verifikasi" invisible="1" />
+                </group>
+                <footer>
+                    <button name="action_confirm" string="Verifikasi" invisible="not current_kode_verifikasi" type="object" class="btn-primary"/>
+                    <button string="Batal" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

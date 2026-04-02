@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Kiosk Camera Modal Template -->
+    <t t-name="hr_attendance_selfie.KioskCameraModal" owl="1">
+        <div class="kiosk-camera-overlay" t-if="cameraState.showModal">
+            <div class="kiosk-camera-modal">
+
+                <!-- Header -->
+                <div class="kiosk-camera-header">
+                    <h2>
+                        <i class="fa fa-camera"/>
+                        Please Take a Selfie
+                    </h2>
+                </div>
+
+                <!-- GPS Info -->
+                <div class="kiosk-gps-info" t-if="cameraState.gpsLocation">
+                    <i class="fa fa-map-marker"/>
+                    Location detected
+                </div>
+
+                <!-- Camera Preview or Captured Photo -->
+                <div class="kiosk-camera-preview">
+                    <!-- Live Video Preview -->
+                    <video
+                        t-if="cameraState.cameraActive and !cameraState.capturedPhoto"
+                        id="kiosk-camera-video"
+                        autoplay="autoplay"
+                        playsinline="playsinline"/>
+
+                    <!-- Captured Photo Preview -->
+                    <img
+                        t-if="cameraState.capturedPhoto"
+                        t-att-src="cameraState.capturedPhoto"
+                        alt="Captured Photo"/>
+
+                    <!-- Loading State -->
+                    <div
+                        t-if="!cameraState.cameraActive and !cameraState.capturedPhoto"
+                        class="kiosk-camera-loading">
+                        <i class="fa fa-spinner fa-spin fa-3x"/>
+                        <p>Starting camera...</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="kiosk-camera-actions">
+                    <!-- Cancel Button -->
+                    <button
+                        class="btn btn-lg btn-secondary"
+                        t-on-click="() => this.cancelCameraCapture()">
+                        <i class="fa fa-times"/> Cancel
+                    </button>
+
+                    <!-- Capture Button (when camera is active) -->
+                    <button
+                        t-if="cameraState.cameraActive and !cameraState.capturedPhoto"
+                        class="btn btn-lg btn-primary"
+                        t-on-click="() => this.capturePhotoFromCamera()">
+                        <i class="fa fa-camera"/> Capture Photo
+                    </button>
+
+                    <!-- Retake Button (after capture) -->
+                    <button
+                        t-if="cameraState.capturedPhoto"
+                        class="btn btn-lg btn-warning"
+                        t-on-click="() => this.retakePhoto()">
+                        <i class="fa fa-refresh"/> Retake
+                    </button>
+
+                    <!-- Submit Button (after capture) -->
+                    <button
+                        t-if="cameraState.capturedPhoto"
+                        class="btn btn-lg btn-success"
+                        t-on-click="() => this.submitAttendanceWithPhoto()">
+                        <i class="fa fa-check"/> Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+</templates>

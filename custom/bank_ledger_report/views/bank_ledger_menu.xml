@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bank Ledger Menu under Accounting > Reporting -->
+    <menuitem
+        id="menu_bank_ledger_report"
+        name="Bank Ledger"
+        parent="account.account_reports_management_menu"
+        action="bank_ledger_report.action_bank_ledger_wizard"
+        sequence="50"
+        groups="account.group_account_user,account.group_account_manager"/>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_move_view_fleet_usage_tree" model="ir.ui.view">
+        <field name="name">stock.move.view.fleet.usage.tree</field>
+        <field name="model">stock.move</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <tree string="" action="action_open_fleet_usage" type="object">
+                <field name="product_id" />
+                <field name="quantity" />
+                <field name="returned_qty" />
+                <field name='fleet_item_usage_status' widget="badge" decoration-danger="fleet_item_usage_status == 'cancel'" decoration-success="fleet_item_usage_status in ('return', 'used')" decoration-warning="fleet_item_usage_status in ('in_loan')" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

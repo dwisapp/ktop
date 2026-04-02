@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_tempat_muat_action" model="ir.actions.act_window">
+        <field name="name">Tempat Muat</field>
+        <field name="res_model">res.tempat.muat</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Klik tombol New untuk menambahkan Tempat Muat baru
+            </p>
+        </field>
+    </record>
+
+    <record id="res_tempat_muat_view_tree" model="ir.ui.view">
+        <field name="name">res.tempat.muat.view.tree</field>
+        <field name="model">res.tempat.muat</field>
+        <field name="arch" type="xml">
+            <tree string="" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

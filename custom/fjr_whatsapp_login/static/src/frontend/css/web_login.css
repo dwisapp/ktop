@@ -1,0 +1,23 @@
+.loading-span {
+	display: none;
+}
+.loading-span::after {
+	content: "";
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border: 2px solid #ffffff;
+	border-radius: 50%;
+	border-top: 2px solid transparent;
+	animation: spin 1s linear infinite;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

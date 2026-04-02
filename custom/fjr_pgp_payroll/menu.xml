@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem   
+        id="hr_payroll_other_input_menu" 
+        name="Deduction and Allowance"
+        parent="hr_work_entry_contract_enterprise.menu_hr_payroll_root" 
+        action="hr_payroll_other_input_action" 
+        sequence="70"/>
+
+    <menuitem
+        id="hr_payment_per_delivery_menu"
+        action="hr_payment_per_delivery_action"
+        parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+        sequence="50"/>
+
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fjr_pgp_account.ListViewSelectionInherit" t-inherit="web.ListView.Selection" t-inherit-mode="extension">
+        <span class="list-group-item active d-flex align-items-center pe-0 py-0 rounded-1 lh-1" position="after">
+            <div t-if="displayAmountResidual" class="ms-1 list-group-item active d-flex align-items-center pe-0 py-0 rounded-1 lh-1">
+                <!-- <p class="mt-0 mb-0">
+                    Total Amount Due : 
+                </p> -->
+                <b class="me-1">
+                    Rp. <span t-esc="amountResidual" />
+                </b>
+                    <!-- Rp. 10.000
+                </b> -->
+            </div>
+        </span>
+    
+    </t> 
+
+
+</templates>

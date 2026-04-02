@@ -1,0 +1,265 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fjr_pgp_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-20 05:34+0000\n"
+"PO-Revision-Date: 2024-11-20 05:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fjr_pgp_account
+#: model:ir.actions.report,print_report_name:fjr_pgp_account.action_report_account_move_invoice
+msgid "'Invoice - %s' % object.name"
+msgstr "'Faktur - %s' % objek.nama"
+
+#. module: fjr_pgp_account
+#: model:ir.actions.report,print_report_name:fjr_pgp_account.action_report_account_move_kwitansi
+msgid "'Kwitansi - %s' % object.name"
+msgstr "'Kwitansi - %s' % objek.nama"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "4 Januari 2010"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid ""
+"<span class=\"border-bottom border-dark\">\n"
+"                                    KWITANSI                            \n"
+"                                </span>"
+msgstr "<span class=\"border-bottom border-dark\">\n KWITANSI \n </span>"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span class=\"font-weight-bold\">To :</span>"
+msgstr "<span class=\"font-weight-bold\">Kepada :</span>"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span>Date</span>"
+msgstr "<span>Tanggal</span>"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span>Kapal</span>"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span>No.</span>"
+msgstr "<span>No.</span>"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span>Sales Tax</span>"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "<span>Sejumlah Uang</span>"
+msgstr "<span> Sejumlah Uang</span>"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span>Subtotal</span>"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "<span>Sudah Terima Dari</span>"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span>Tanggal</span>"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "<span>Terbilang</span>"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<span>Total Due</span>"
+msgstr "<span>Total Jatuh Tempo</span>"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "<strong>PO No.</strong> :"
+msgstr "<strong>Nomor PO.</strong> :"
+
+#. module: fjr_pgp_account
+#: model:ir.model,name:fjr_pgp_account.model_account_term_condition
+msgid "Account Term Condition"
+msgstr "Ketentuan Ketentuan Akun"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "Amount"
+msgstr "Jumlah"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "CILEGON,..................20......"
+msgstr "CILEGON,..................20......"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.actions.act_window,help:fjr_pgp_account.account_term_condition_action
+msgid "Click to create a new term &amp; condition"
+msgstr "Klik untuk membuat istilah baru"
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__description
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "Description"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__display_name
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__id
+msgid "ID"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.actions.report,name:fjr_pgp_account.action_report_account_move_invoice
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "Invoice"
+msgstr "Faktur"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "Issue Date"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "Issue No."
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.model,name:fjr_pgp_account.model_account_move
+msgid "Journal Entry"
+msgstr "Entri Jurnal"
+
+#. module: fjr_pgp_account
+#: model:ir.actions.report,name:fjr_pgp_account.action_report_account_move_kwitansi
+msgid "Kwitansi"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__write_date
+msgid "Last Updated on"
+msgstr "Terakhir Diperbarui pada"
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_term_condition__name
+msgid "Name"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "No Rs"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "No."
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_bank_statement_line__pic_user_id
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_move__pic_user_id
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_payment__pic_user_id
+msgid "PIC Signature"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "Quantity"
+msgstr "Kuantitas"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "RS/PMS/004"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "RS/PMS/006"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_bank_statement_line__tanggal_mulai_kegiatan
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_move__tanggal_mulai_kegiatan
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_payment__tanggal_mulai_kegiatan
+msgid "Tanggal Mulai Kegiatan"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_bank_statement_line__tanggal_selesai_kegiatan
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_move__tanggal_selesai_kegiatan
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_payment__tanggal_selesai_kegiatan
+msgid "Tanggal Selesai Kegiatan"
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_kwitansi
+msgid "Telp."
+msgstr ""
+
+#. module: fjr_pgp_account
+#: model:ir.actions.act_window,name:fjr_pgp_account.account_term_condition_action
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_bank_statement_line__term_condition_id
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_move__term_condition_id
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_payment__term_condition_id
+#: model:ir.ui.menu,name:fjr_pgp_account.account_term_condition_menu
+msgid "Term & Condition"
+msgstr "Syarat & Ketentuan"
+
+#. module: fjr_pgp_account
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_account.report_account_move_invoice
+msgid "Unit Price"
+msgstr "Harga Satuan"
+
+#. module: fjr_pgp_account
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_bank_statement_line__vessel
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_move__vessel
+#: model:ir.model.fields,field_description:fjr_pgp_account.field_account_payment__vessel
+msgid "Vessel"
+msgstr "Kapal"
+

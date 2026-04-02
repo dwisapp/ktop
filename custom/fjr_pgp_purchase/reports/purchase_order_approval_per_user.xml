@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_purchase_order_approval_line_per_user" model="ir.actions.report">
+        <field name="name">Purchase Order Approval</field>
+        <field name="model">purchase.order.approval.line.per.user</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">fjr_pgp_purchase.purchase_order_approval_line_per_user_template</field>
+        <field name="report_file">fjr_pgp_purchase.purchase_order_approval_line_per_user_template</field>
+        <field name="print_report_name">'%s' % object.order_id.name</field>
+        <field name="binding_model_id" ref="model_purchase_order_approval_line_per_user"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="purchase_order_approval_line_per_user_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="o" t-value="doc.order_id" />
+                <t t-call="fjr_pgp_purchase.report_purchaseorder_inherit" />
+            </t>
+        </t>
+    </template>
+
+</odoo>

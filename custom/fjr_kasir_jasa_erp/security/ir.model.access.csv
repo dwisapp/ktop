@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jasa_erp_sales_order_user,fjr_kasir_jasa_erp.jasa.erp.sales.order,model_jasa_erp_sales_order,base.group_user,1,1,1,1
+access_jasa_erp_delivery_note_user,fjr_kasir_jasa_erp.jasa.erp.delivery.note,model_jasa_erp_delivery_note,base.group_user,1,1,1,1
+access_jasa_erp_delivery_items_user,fjr_kasir_jasa_erp.jasa.erp.delivery.items,model_jasa_erp_delivery_items,base.group_user,1,1,1,1

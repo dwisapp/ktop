@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="rute_uang_jalan_action" model="ir.actions.act_window">
+        <field name="name">Uang Jalan</field>
+        <field name="res_model">rute.uang.jalan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new uang jalan.
+            </p>
+        </field>
+    </record>
+
+    <record id="rute_uang_jalan_view_tree" model="ir.ui.view">
+        <field name="name">rute.uang.jalan.view.tree</field>
+        <field name="model">rute.uang.jalan</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="tempat_muat" />
+                <field name="tujuan_bongkar" />
+                <field name="amount" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="rute_uang_jalan_view_form" model="ir.ui.view">
+        <field name="name">rute.uang.jalan.view.form</field>
+        <field name="model">rute.uang.jalan</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="tempat_muat" />
+                            <field name="tujuan_bongkar" />
+                        </group>
+                        <group>
+                            <field name="amount" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

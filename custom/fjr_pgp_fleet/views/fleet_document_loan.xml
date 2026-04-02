@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleet_document_loan_action" model="ir.actions.act_window">
+        <field name="name">Document Loans</field>
+        <field name="res_model">fleet.document.loan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create new document loan
+            </p>
+        </field>
+    </record>
+
+
+    <record id="fleet_document_loan_view_tree" model="ir.ui.view">
+        <field name="name">fleet.document.loan.view.tree</field>
+        <field name="model">fleet.document.loan</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="document_id"/>
+                <field name="fleet_id"/>
+                <field name="employee_id"/>
+                <field name="state" widget="badge" decoration-danger="state in ('cancel', 'reject', 'lost')" decoration-info="state == 'request'" decoration-success="state in ('in_loan')" decoration-primary="state in ('approve','return')"/>
+            </tree>
+        </field>
+    </record>
+    
+
+    <record id="fleet_document_loan_view_form" model="ir.ui.view">
+        <field name="name">fleet.document.loan.view.form</field>
+        <field name="model">fleet.document.loan</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header> 
+                    <button name="action_request" class="oe_highlight" string="Request" type="object" invisible="state != 'draft'" />
+                    <button name="action_approve" class="oe_highlight" string="Approve" type="object" invisible="state != 'request' or document_user_id != context.get('uid') " />
+                    <button name="action_reject" string="Reject" type="object" invisible="state != 'request' or document_user_id != context.get('uid')" />
+                    <button name="action_return" string="Return" class="oe_highlight" type="object" invisible="state != 'in_loan'"  />
+                    <button name="action_lost" string="Set To Lost" type="object" invisible="state != 'in_loan'" />
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ('cancel','return','lost')" />
+                    <button name="action_draft" string="Set To Draft" type="object" invisible="state not in ('cancel', 'rejected')" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,request,in_loan,return"/>
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="fleet_id" options="{'no_create':True, 'no_open':True}" readonly="state != 'draft'" />
+                            <field name="document_id" options="{'no_create':True, 'no_open':True}"  readonly="state != 'draft'" domain="[('fleet_id','=',fleet_id),('state','=','available')]" />
+                            <field name="document_user_id" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="date" readonly="state != 'draft'" />
+                            <field name="estimated_return_date"  readonly="state != 'draft'" required="1" />
+                        
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="loan_purpose"  readonly="state != 'draft'" required="1"/>
+                            <field name="reject_reason" invisible="not reject_reason" readonly="1"/>
+                            <field name="company_id" options="{'no_create':True, 'no_open':True}" groups="base.group_multi_company" readonly="state != 'draft'" />
+                            <field name="company_id" invisible="1" groups="!base.group_multi_company" readonly="state != 'draft'" />
+                        </group>
+                        <group>
+                            <field name="employee_id" options="{'no_create':True, 'no_open':True}"  readonly="state != 'draft'" />
+                            <field name="manager_id" options="{'no_create':True, 'no_open':True}"  readonly="state != 'draft'"  />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

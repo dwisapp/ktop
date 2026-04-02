@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_kategori_pph_user,pph_21_payroll.hr.kategori.pph,model_hr_kategori_pph,base.group_user,1,1,1,1
+access_hr_perhitungan_pph_user,pph_21_payroll.hr.perhitungan.pph,model_hr_perhitungan_pph,base.group_user,1,1,1,1
+access_hr_kategori_ter_user,pph_21_payroll.hr.kategori.ter,model_hr_kategori_ter,base.group_user,1,1,1,1

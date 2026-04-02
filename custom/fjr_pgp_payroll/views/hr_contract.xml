@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_contract_view_form_inherit" model="ir.ui.view">
+        <field name="name">hr.contract.view.form.inherit</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <field name="structure_type_id" position="after">
+                <field name="payroll_structure_id" options="{'no_create':True}" />
+            </field>
+            <group name="salary" position="inside">
+                <field name="tunj_fee" />
+                <field name="tunj_transport" />
+                <field name="tunj_pulsa" />
+                <field name="tunj_makan" />
+                <field name="tunj_perumahan" />
+                <field name="tunj_operasional" />
+                <field name="tunj_stand_by" />
+                <field name="tunj_shift" />
+                <field name="tunj_jabatan" />
+                <field name="tunj_wakil_direktur" />
+                <field name="tunj_all_in" />
+                <field name="tunj_wilayah" />
+                <field name="tunj_kuliah" />
+                <field name="tunj_keahlian" />
+                <field name="tunj_supir" />
+                <field name="potongan_amal_jariyah" />
+            </group>
+            <group name="yearly_benefits" position="inside">
+                <field name="bpjs_active" />
+                <field name="bpjs_type" invisible="not bpjs_active" required="bpjs_active" />
+                <field name="additional_bpjs" invisible="not bpjs_active" />
+                <field name="jkm_active" />
+                <field name="jkk_active" />
+                <field name="jht_active" />
+                <field name="jp_active" />
+                <field name="subsidi_driver" />
+                <field name="nominal_subsidi_driver" invisible="not subsidi_driver"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,1010 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fjr_pgp_fleet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-20 08:17+0000\n"
+"PO-Revision-Date: 2024-11-20 08:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_needaction
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_needaction
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_needaction
+msgid "Action Needed"
+msgstr "Diperlukan Tindakan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__active
+msgid "Active"
+msgstr "Aktif"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_ids
+msgid "Activities"
+msgstr "Kegiatan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_exception_decoration
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_exception_decoration
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekorasi Pengecualian Aktivitas"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_state
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_state
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_state
+msgid "Activity State"
+msgstr "Status Aktivitas"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_type_icon
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_type_icon
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikon Jenis Aktivitas"
+
+#. module: fjr_pgp_fleet
+#: model:res.groups,name:fjr_pgp_fleet.group_fleet_document_admin
+msgid "Administrator"
+msgstr ""
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__approval_link
+msgid "Approval Link"
+msgstr "Tautan Persetujuan"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_loan_view_form
+msgid "Approve"
+msgstr "Setuju"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Are you sure you want to cancel this item usage?"
+msgstr "Apakah Anda yakin ingin membatalkan penggunaan item ini?"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Assign Serial Numbers"
+msgstr "Tetapkan Nomor Seri"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_form
+msgid "Attachment"
+msgstr "Lampiran"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_attachment_count
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_attachment_count
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_attachment_count
+msgid "Attachment Count"
+msgstr "Jumlah Lampiran"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document__state__available
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_search
+msgid "Available"
+msgstr "Tersedia"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document__state__cancel
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document_loan__state__cancel
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__state__cancel
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_loan_view_form
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_form
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.wizard_return_fleet_item_usage_view_form
+#, python-format
+msgid "Cancel"
+msgstr "Batal"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.actions.act_window,help:fjr_pgp_fleet.fleet_item_loan_action
+#: model_terms:ir.actions.act_window,help:fjr_pgp_fleet.fleet_item_usage_action
+msgid "Click to create a new item usage."
+msgstr "Klik untuk membuat penggunaan item baru."
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.actions.act_window,help:fjr_pgp_fleet.fleet_document_action
+msgid "Click to create new document"
+msgstr "Klik untuk membuat dokumen baru"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.actions.act_window,help:fjr_pgp_fleet.fleet_document_loan_action
+msgid "Click to create new document loan"
+msgstr "Klik untuk membuat pinjaman dokumen baru"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.actions.act_window,help:fjr_pgp_fleet.fleet_document_type_action
+msgid "Click to create new document type"
+msgstr "Klik untuk membuat tipe dokumen baru"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_res_company
+msgid "Companies"
+msgstr "Perusahaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__company_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__company_id
+msgid "Company"
+msgstr "Perusahaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_res_config_settings
+msgid "Config Settings"
+msgstr "Pengaturan Konfigurasi"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__create_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__create_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__create_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__create_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__create_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__create_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__create_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__create_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__create_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__create_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__date
+msgid "Date"
+msgstr "Tanggal"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Demand"
+msgstr "Permintaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__description
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__description
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Description"
+msgstr "Deskripsi"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__location_dest_id
+msgid "Destination Location"
+msgstr "Lokasi Tujuan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document__state__destroyed
+msgid "Destroyed"
+msgstr "Hancur"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__display_button_return
+msgid "Display Button Return"
+msgstr "Tombol Tampilan Kembali"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__display_name
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__display_name
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__display_name
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__display_name
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__display_name
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__display_name
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__document_id
+#: model:ir.ui.menu,name:fjr_pgp_fleet.document_main_menu
+#: model:ir.ui.menu,name:fjr_pgp_fleet.fleet_document_menu
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_vehicle_view_form_inherit
+msgid "Document"
+msgstr "Dokumen"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__document_attachment_ids
+msgid "Document Attachments"
+msgstr "Lampiran Dokumen"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__document_link
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__fleet_document_link
+msgid "Document Link"
+msgstr "Tautan Dokumen"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_document_loan.py:0
+#, python-format
+msgid "Document Loan %s requested for approval by %s"
+msgstr "Pinjaman Dokumen %s diminta persetujuan oleh %s"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_fleet_document_loan
+msgid "Document Loan for Fleet"
+msgstr "Pinjaman Dokumen untuk Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.actions.act_window,name:fjr_pgp_fleet.fleet_document_loan_action
+msgid "Document Loans"
+msgstr "Pinjaman Dokumen"
+
+#. module: fjr_pgp_fleet
+#: model:res.groups,name:fjr_pgp_fleet.group_fleet_document_manager
+msgid "Document Manager"
+msgstr "Manajer Dokumen"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_form
+msgid "Document Name"
+msgstr "Nama Dokumen"
+
+#. module: fjr_pgp_fleet
+#: model:ir.actions.act_window,name:fjr_pgp_fleet.fleet_document_type_action
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__document_type
+#: model:ir.ui.menu,name:fjr_pgp_fleet.fleet_document_type_menu
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_search
+msgid "Document Type"
+msgstr "Jenis Dokumen"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_fleet_document_type
+msgid "Document Type for Fleet"
+msgstr "Jenis Dokumen untuk Armada"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_vehicle_view_form_inherit
+msgid "Documents"
+msgstr "Dokumen"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document_loan__state__draft
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__state__draft
+#, python-format
+msgid "Draft"
+msgstr "Draf"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__employee_id
+msgid "Employee"
+msgstr "Karyawan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__estimated_return_date
+msgid "Estimated Return Date"
+msgstr "Perkiraan Tanggal Pengembalian"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__fleet_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__fleet_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__fleet_id
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_search
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.product_product_template_form_view
+msgid "Fleet"
+msgstr "Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_fleet_document
+#: model:ir.module.category,description:fjr_pgp_fleet.module_category_fleet_document
+#: model:ir.module.category,name:fjr_pgp_fleet.module_category_fleet_document
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.res_config_settings_fleet_view_form_inherit
+msgid "Fleet Document"
+msgstr "Dokumen Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__fleet_document_count
+msgid "Fleet Document Count"
+msgstr "Jumlah Dokumen Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_res_company__fleet_document_loan_approve_template
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_res_config_settings__fleet_document_loan_approve_template
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.res_config_settings_fleet_view_form_inherit
+msgid "Fleet Document Loan Approve Template"
+msgstr "Templat Persetujuan Pinjaman Dokumen Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_res_company__fleet_document_loan_manager_template
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_res_config_settings__fleet_document_loan_manager_template
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.res_config_settings_fleet_view_form_inherit
+msgid "Fleet Document Loan Manager Template"
+msgstr "Templat Manajer Peminjaman Dokumen Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__fleet_document_ids
+msgid "Fleet Documents"
+msgstr "Dokumen Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_move__fleet_item_return_id
+msgid "Fleet Item Return"
+msgstr "Pengembalian Barang Armada"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_vehicle.py:0
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_move__fleet_item_usage_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__fleet_item_usage_id
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.res_config_settings_fleet_view_form_inherit
+#, python-format
+msgid "Fleet Item Usage"
+msgstr "Penggunaan Barang Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_location__fleet_usage_location
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.res_config_settings_fleet_view_form_inherit
+msgid "Fleet Item Usage Location"
+msgstr "Lokasi Penggunaan Item Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_product_product__fleet_usage
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_product_template__fleet_usage
+msgid "Fleet Usage"
+msgstr "Penggunaan Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_product_product__fleet_usage_loan
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_product_template__fleet_usage_loan
+msgid "Fleet Usage Loan"
+msgstr "Pinjaman Penggunaan Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_res_company__fleet_usage_location
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_res_config_settings__fleet_usage_location
+msgid "Fleet Usage Location"
+msgstr "Lokasi Penggunaan Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_follower_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_follower_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_follower_ids
+msgid "Followers"
+msgstr "Pengikut"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_partner_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_partner_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pengikut (Mitra)"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__activity_type_icon
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__activity_type_icon
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ikon font mengagumkan, mis. "
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Forecast"
+msgstr "Prakiraan"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Forecast Report"
+msgstr "Laporan Prakiraan"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_search
+msgid "Group By"
+msgstr "Kelompokkan Oleh"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__has_message
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__has_message
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__has_message
+msgid "Has Message"
+msgstr "Punya Pesan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__id
+msgid "ID"
+msgstr ""
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_exception_icon
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_exception_icon
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_exception_icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__activity_exception_icon
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__activity_exception_icon
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikon untuk menunjukkan aktivitas pengecualian."
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__message_needaction
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__message_needaction
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__message_has_error
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__message_has_sms_error
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__message_has_error
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__message_has_sms_error
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__message_has_error
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document__state__in_loan
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__state__in_loan
+#, python-format
+msgid "In Loan"
+msgstr "Dalam Pinjaman"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_stock_location
+msgid "Inventory Locations"
+msgstr "Lokasi Stok Persediaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_is_follower
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_is_follower
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_is_follower
+msgid "Is Follower"
+msgstr "Adalah Pengikut"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__product_id
+msgid "Item"
+msgstr "Barang"
+
+#. module: fjr_pgp_fleet
+#: model:ir.actions.act_window,name:fjr_pgp_fleet.fleet_item_loan_action
+#: model:ir.ui.menu,name:fjr_pgp_fleet.fleet_item_loan_menu
+msgid "Item Loan"
+msgstr "Pinjaman Barang"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__location_id
+msgid "Item Location"
+msgstr "Lokasi Barang"
+
+#. module: fjr_pgp_fleet
+#: model:ir.actions.act_window,name:fjr_pgp_fleet.fleet_item_usage_action
+#: model:ir.ui.menu,name:fjr_pgp_fleet.fleet_item_usage_menu
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_vehicle_view_form_inherit
+msgid "Item Usage"
+msgstr "Penggunaan Barang"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_fleet_item_usage
+msgid "Item Usage for Fleet"
+msgstr "Penggunaan Barang untuk Armada"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.wizard_return_fleet_item_usage_view_form
+msgid "Item to Return"
+msgstr "Barang yang Akan Dikembalikan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__jatuh_tempo_pajak_5_tahunan
+msgid "Jatuh Tempo Pajak 5 Tahunan"
+msgstr ""
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__jatuh_tempo_pajak_tahunan
+msgid "Jatuh Tempo Pajak Tahunan"
+msgstr ""
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__write_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__write_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__write_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__write_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__write_uid
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__write_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__write_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__write_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__write_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__write_date
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__write_date
+msgid "Last Updated on"
+msgstr "Terakhir Diperbarui pada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage__line_ids
+msgid "Lines"
+msgstr "Garis"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__usage_type__loan
+#, python-format
+msgid "Loan"
+msgstr "Pinjaman"
+
+#. module: fjr_pgp_fleet
+#: model:ir.ui.menu,name:fjr_pgp_fleet.fleet_document_loan_menu
+msgid "Loan Document"
+msgstr "Dokumen Pinjaman"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__name
+msgid "Loan Number"
+msgstr "Nomor Pinjaman"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__loan_purpose
+msgid "Loan Purpose"
+msgstr "Tujuan Pinjaman"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document__state__lost
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document_loan__state__lost
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__state__lost
+#, python-format
+msgid "Lost"
+msgstr "Hilang"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__manager_id
+msgid "Manager"
+msgstr "Manajer"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__masa_berlaku_kir_buntut
+msgid "Masa Berlaku KIR Buntut"
+msgstr ""
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__masa_berlaku_kir_kepala
+msgid "Masa Berlaku KIR Kepala"
+msgstr ""
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_has_error
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_has_error
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_has_error
+msgid "Message Delivery error"
+msgstr "Kesalahan Pengiriman Pesan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_ids
+msgid "Messages"
+msgstr "Pesan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__my_activity_date_deadline
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__my_activity_date_deadline
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Batas Waktu Aktivitasku"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__name
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_type__name
+msgid "Name"
+msgstr "Nama"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_document_loan.py:0
+#: code:addons/fjr_pgp_fleet/models/fleet_document_loan.py:0
+#: code:addons/fjr_pgp_fleet/models/fleet_document_loan.py:0
+#: code:addons/fjr_pgp_fleet/models/fleet_document_loan.py:0
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#, python-format
+msgid "New"
+msgstr "Baru"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_date_deadline
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_date_deadline
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Batas Waktu Kegiatan Selanjutnya"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_summary
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_summary
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_summary
+msgid "Next Activity Summary"
+msgstr "Ringkasan Kegiatan Selanjutnya"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_type_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_type_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_type_id
+msgid "Next Activity Type"
+msgstr "Jenis Aktivitas Berikutnya"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__nomer_kir_buntut
+msgid "No KIR Buntut"
+msgstr "Tidak ada KIR Buntut"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__no_kir_kepala
+msgid "No KIR Kepala"
+msgstr "Tidak ada KIR Kepala"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_vehicle__no_lambung
+msgid "No Lambung"
+msgstr "Tidak Lambung"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_needaction_counter
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_needaction_counter
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Jumlah Tindakan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_has_error_counter
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_has_error_counter
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_has_error_counter
+msgid "Number of errors"
+msgstr "Jumlah kesalahan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__message_needaction_counter
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__message_needaction_counter
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Jumlah pesan yang memerlukan tindakan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__message_has_error_counter
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__message_has_error_counter
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Jumlah pesan dengan kesalahan pengiriman"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__origin_move_id
+msgid "Origin Move"
+msgstr "Perpindahan Asal"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_product_template
+msgid "Product"
+msgstr "Produk"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__public_token
+msgid "Public Token"
+msgstr "Token Publik"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Quantity"
+msgstr "Kuantitas"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__quantity_return
+msgid "Quantity Return"
+msgstr "Pengembalian Kuantitas"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__quantity_used
+msgid "Quantity Used"
+msgstr "Jumlah yang Digunakan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_move__quantity_to_return
+msgid "Quantity to Return"
+msgstr "Jumlah yang Akan Dikembalikan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__rating_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__rating_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__rating_ids
+msgid "Ratings"
+msgstr "Peringkat"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document_loan__state__reject
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_loan_view_form
+msgid "Reject"
+msgstr "Tolak"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__reject_reason
+msgid "Reject Reason"
+msgstr "Alasan Tolak"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__rejection_link
+msgid "Rejection Link"
+msgstr "Tautan Penolakan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document__state__request
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document_loan__state__request
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_loan_view_form
+msgid "Request"
+msgstr "Permintaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__user_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__document_user_id
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_search
+msgid "Responsible"
+msgstr "Bertanggung jawab"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__activity_user_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__activity_user_id
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__activity_user_id
+msgid "Responsible User"
+msgstr "Pengguna yang Bertanggung Jawab"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document_loan__state__return
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__state__return
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_loan_view_form
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.wizard_return_fleet_item_usage_view_form
+#, python-format
+msgid "Return"
+msgstr "Kembali"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__return_date
+msgid "Return Date"
+msgstr "Tanggal Kembali"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#, python-format
+msgid "Return Fleet Item Usage"
+msgstr "Pengembalian Penggunaan Barang Armada"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__return_move_ids
+msgid "Return Moves"
+msgstr "Gerakan Kembali"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_move__returned_qty
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Returned Quantity"
+msgstr "Kuantitas yang Dikembalikan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__message_has_sms_error
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__message_has_sms_error
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Kesalahan Pengiriman SMS"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_loan_view_form
+msgid "Set To Draft"
+msgstr "Diatur Ke Draf"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_loan_view_form
+msgid "Set To Lost"
+msgstr "Ditetapkan Menjadi Hilang"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_form
+msgid "Set to Available"
+msgstr "Atur ke Tersedia"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_form
+msgid "Set to Destroyed"
+msgstr "Ditetapkan ke Hancur"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_form
+msgid "Set to Lost"
+msgstr "Disetel ke Hilang"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_form
+msgid "Set to Sold"
+msgstr "Diatur untuk Dijual"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document__state__sold
+msgid "Sold"
+msgstr "Terjual"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_document_view_search
+msgid "State"
+msgstr "Negara Bagian"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__state
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__state
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__state
+msgid "Status"
+msgstr "Statusnya"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__activity_state
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__activity_state
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Status berdasarkan aktivitas\nTerlambat: Batas waktu telah berlalu\nHari ini: Tanggal aktivitas adalah hari ini\nRencana: Aktivitas selanjutnya."
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_stock_move
+msgid "Stock Move"
+msgstr "Pergerakan Stok"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_move__stock_move_return_ids
+msgid "Stock Move Return"
+msgstr "Pengembalian Pergerakan Saham"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_move__stock_move_usage_id
+msgid "Stock Move Usage"
+msgstr "Penggunaan Pemindahan Saham"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Stock Moves"
+msgstr "Pergerakan Saham"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__activity_exception_decoration
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__activity_exception_decoration
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Jenis aktivitas pengecualian yang tercatat."
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Unit"
+msgstr "Satuan"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__usage_type__usage
+#, python-format
+msgid "Usage"
+msgstr "Penggunaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.ui.menu,name:fjr_pgp_fleet.fleet_item_usage_main_menu
+msgid "Usage Item"
+msgstr "Barang Penggunaan"
+
+#. module: fjr_pgp_fleet
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_fleet.fleet_item_usage_view_form
+msgid "Usage Items"
+msgstr "Item Penggunaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__usage_move_ids
+msgid "Usage Moves"
+msgstr "Pergerakan Penggunaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__name
+msgid "Usage Number"
+msgstr "Nomor Penggunaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_stock_move__fleet_item_usage_status
+msgid "Usage Status"
+msgstr "Status Penggunaan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__usage_type
+msgid "Usage Type"
+msgstr "Jenis Penggunaan"
+
+#. module: fjr_pgp_fleet
+#. odoo-python
+#: code:addons/fjr_pgp_fleet/models/fleet_item_usage.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_item_usage__state__used
+#, python-format
+msgid "Used"
+msgstr "Digunakan"
+
+#. module: fjr_pgp_fleet
+#: model:res.groups,name:fjr_pgp_fleet.group_fleet_document_user
+msgid "User"
+msgstr "Pengguna"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_fleet_vehicle
+msgid "Vehicle"
+msgstr "Kendaraan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.actions.act_window,name:fjr_pgp_fleet.fleet_document_action
+msgid "Vehicle Document"
+msgstr "Dokumen Kendaraan"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document__website_message_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_document_loan__website_message_ids
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_fleet_item_usage__website_message_ids
+msgid "Website Messages"
+msgstr "Pesan Situs Web"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document__website_message_ids
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_document_loan__website_message_ids
+#: model:ir.model.fields,help:fjr_pgp_fleet.field_fleet_item_usage__website_message_ids
+msgid "Website communication history"
+msgstr "Riwayat komunikasi situs web"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_wizard_return_fleet_item_usage
+#: model:ir.model.fields,field_description:fjr_pgp_fleet.field_wizard_return_fleet_item_usage_line__wizard_return_fleet_item_usage_id
+msgid "Wizard Return Fleet Item Usage"
+msgstr "Penggunaan Item Armada Pengembalian Penyihir"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model,name:fjr_pgp_fleet.model_wizard_return_fleet_item_usage_line
+msgid "Wizard Return Fleet Item Usage Line"
+msgstr "Jalur Penggunaan Item Armada Pengembalian Penyihir"
+
+#. module: fjr_pgp_fleet
+#: model:ir.model.fields.selection,name:fjr_pgp_fleet.selection__fleet_document_loan__state__in_loan
+msgid "in Loan"
+msgstr "Dalam Pinjaman"
+

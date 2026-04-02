@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <template id="web_login_inherit" name="web_login_inherit" inherit_id="web.login">
+        <div class="mb-3 field-login" position="after">
+            <div class="mb-3 field-whatsapp_number" t-if="otp_login">
+                <label for="whatsapp_number" class="form-label">Whatsapp Number</label>
+                <input type="text" placeholder="Whatsapp Number" name="whatsapp_number" t-att-value="whatsapp_number" id="whatsapp_number" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="username" autofocus="autofocus" autocapitalize="off"/>
+            </div>
+             <div class="mb-3 field-otp" t-if="otp_login" t-attf-style=" {{ '' if is_send_otp or not otp_login else 'display:none;' }}">
+                <label for="otp" class="form-label">OTP</label>
+                <input type="password" placeholder="OTP" name="otp" id="otp" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-otp" t-att-autofocus="'autofocus' if whatsapp_number else None" maxlength="4096"/>            
+            </div>
+
+        </div>
+        <div class="mb-3 field-login" position="attributes">
+            <attribute name="t-if">
+                not otp_login
+            </attribute>
+        
+        </div>
+
+        <xpath expr="//div[@class='mb-3'][2]" position="attributes">
+            <attribute name="t-if">
+                not otp_login
+            </attribute>    
+        </xpath>
+        <xpath expr="//button[@type='submit']" position="before">
+            <div class="justify-content-between d-flex small">
+                <a t-if="otp_login" t-attf-href="/web/login">Login With Password</a>
+                <a t-if="not otp_login" t-attf-href="/web/login?otp_login=true">Login With Whatsapp OTP</a>
+            </div>
+        </xpath>
+        <xpath expr="//button[@type='submit']" position="after">
+            <div t-if="otp_login" t-attf-class="clearfix oe_login_buttons text-center gap-1 d-grid mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                <button type="button" class="btn btn-primary send-otp-button">Send OTP <span class="loading-span"></span></button>
+            </div>
+        </xpath>
+
+        <xpath expr="//button[@type='submit']" position="attributes">
+            <attribute name="t-attf-style">
+                {{ '' if is_send_otp or not otp_login else 'display:none;' }}
+            </attribute>
+        </xpath>
+
+        <form class="oe_login_form" position="attributes">
+            <attribute name="t-attf-action">
+                /web/login{{ '' if not otp_login else '?otp_login=true' }}
+            </attribute>
+        </form >
+
+        <!-- <form class="oe_login_form" position="attributes">
+            <attribute name="t-attf-action">
+                {{ '/web/login' if not otp_login '/web/login?otp_login=true'}}
+            </attribute>
+        </form> -->
+
+        
+   </template>
+
+</odoo>

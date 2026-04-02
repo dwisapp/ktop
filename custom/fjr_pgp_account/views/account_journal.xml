@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_journal_view_form_inherit" model="ir.ui.view">
+        <field name="name">account.journal.view.form.inherit</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <field name="restrict_mode_hash_table" position="after">
+                <field name="sequence_year_range_regex" groups="base.group_no_one" />
+                <field name="sequence_yearly_regex" groups="base.group_no_one" />
+                <field name="sequence_monthly_regex" groups="base.group_no_one" />
+                <field name="invoice_sequence_id" groups="base.group_no_one" />
+            </field>
+            <xpath expr="//field[@name='inbound_payment_method_line_ids']//tree" position="inside">
+                <field name="is_internal_transfer" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='outbound_payment_method_line_ids']//tree" position="inside">
+                <field name="is_internal_transfer" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

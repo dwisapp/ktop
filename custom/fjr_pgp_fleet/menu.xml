@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleet.menu_root" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('fjr_pgp_fleet.group_fleet_document_user'))]"/>
+    </record>
+
+    <menuitem
+        id="document_main_menu"
+        name="Document"
+        groups="fjr_pgp_fleet.group_fleet_document_user"
+        parent="fleet.menu_root"
+        sequence="10"/>
+
+     <menuitem
+        id="fleet_item_usage_main_menu"
+        name="Usage Item"
+        groups="fjr_pgp_fleet.group_fleet_document_user"
+        parent="fleet.menu_root"
+        sequence="20"/>
+
+    <menuitem
+        id="fleet_item_usage_menu"
+        name="Item Usage"
+        action="fleet_item_usage_action"
+        parent="fleet_item_usage_main_menu"
+        sequence="10"/>
+
+    <menuitem
+        id="fleet_item_loan_menu"
+        name="Item Loan"
+        action="fleet_item_loan_action"
+        parent="fleet_item_usage_main_menu"
+        sequence="20"/>
+
+    
+        
+
+
+    <menuitem
+        id="fleet_document_menu"
+        name="Document"
+        action="fleet_document_action"
+        parent="document_main_menu"
+        sequence="10"/>
+
+
+    <menuitem
+        id="fleet_document_loan_menu"
+        name="Loan Document"
+        action="fleet_document_loan_action"
+        parent="document_main_menu"
+        sequence="20"/>
+
+    <menuitem
+        id="fleet_document_type_menu"
+        name="Document Type"
+        action="fleet_document_type_action"
+        parent="fleet.fleet_configuration"
+        sequence="50"/>
+
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="tipe_uang_jalan_action" model="ir.actions.act_window">
+        <field name="name">Tipe Uang Jalan</field>
+        <field name="res_model">tipe.uang.jalan</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan tipe uang jalan baru
+            </p>
+        </field>
+    </record>
+
+    <record id="tipe_uang_jalan_view_tree" model="ir.ui.view">
+        <field name="name">tipe.uang.jalan.view.tree</field>
+        <field name="model">tipe.uang.jalan</field>
+        <field name="arch" type="xml">
+            <tree string="" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

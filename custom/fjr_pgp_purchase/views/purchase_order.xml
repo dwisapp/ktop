@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_view_tree_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.view.tree.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="attributes">
+                <attribute name="decoration-danger">state == 'rejected'</attribute>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.view.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <field name="can_approve" invisible="1" />
+            </form>
+            <field name="partner_id" position='attributes'>
+                <attribute name="readonly">
+                    state  in ['cancel', 'done', 'purchase', 'rejected', 'to approve']
+                </attribute>
+            </field>
+            <!-- <field name="currency_id" position="after">
+                <field name="analytic_account_id" readonly="state in ['cancel', 'done', 'purchase', 'rejected', 'to approve']"/>
+            </field> -->
+            <field name="order_line" position="attributes">
+                <attribute name="readonly">state in ['cancel', 'done', 'purchase', 'rejected', 'to approve']</attribute>
+            </field>
+            <button name="button_approve" position="replace" >
+                
+                <button name="button_approve" type="object" invisible="state != 'to approve' or not can_approve" string="Approve Order" class="oe_highlight" data-hotkey="z"/>
+                <button name="action_reject" type="object" invisible="state != 'to approve' or not can_approve" string="Reject Order" data-hotkey="g"/>
+                <button name="button_draft" invisible="state != 'rejected'" string="Set to Draft" type="object" data-hotkey="o"/>
+
+
+            </button>
+
+            <notebook position="inside">
+                <page string="Approval" name="purchase_order_approval" invisible="not approval_line_ids">
+                    <field name="approval_line_ids" readonly="1">
+                        <tree string="Purchase Order Approval" >
+                            <field name="approval_id" />
+                            <field name="user_ids" string="Approver" widget="many2many_tags"/>
+                            <field name="min_amount"/>
+                            <field name="user_id"/>
+                            <field name="state" widget='badge' decoration-danger="state == 'rejected'" decoration-success="state == 'approved'" decoration-info="state == 'waiting_approval'"/>
+                            <field name="reason" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

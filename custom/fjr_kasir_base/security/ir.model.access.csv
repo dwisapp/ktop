@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_midtrans_payout_log_user,fjr_kasir_base.midtrans.payout.log,model_midtrans_payout_log,base.group_user,1,1,1,1
+access_wizard_global_reason_user,fjr_kasir_base.wizard.global.reason,model_wizard_global_reason,base.group_user,1,1,1,1
+access_kapal_kapal_user,fjr_kasir_base.kapal.kapal,model_kapal_kapal,base.group_user,1,1,1,1
+access_xendit_payout_log_user,fjr_kasir_base.xendit.payout.log,model_xendit_payout_log,base.group_user,1,1,1,1

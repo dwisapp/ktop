@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_fleet_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.fleet.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="fleet.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <app name="fleet" position="inside">
+            
+                <block title="Fleet Document" id="fleet_document">
+                    <setting string="Fleet Document Loan Approve Template">
+                        <field name="fleet_document_loan_approve_template" domain="[('model','=','fleet.document.loan')]"   />
+                    </setting>
+                    <setting string="Fleet Document Loan Manager Template">
+                        <field name="fleet_document_loan_manager_template"  domain="[('model','=','fleet.document.loan')]"/>
+                    </setting>
+                </block>
+                <block title="Fleet Item Usage" id="fleet_item_usage">
+                    <setting string="Fleet Item Usage Location">
+                        <field name="fleet_usage_location" />
+                    </setting>
+                    
+                </block>
+            </app>
+        </field>
+    </record>
+
+</odoo>

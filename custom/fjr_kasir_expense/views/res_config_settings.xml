@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_expense_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.expense.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_expense.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <app name="hr_expense" position="inside">
+
+                <block title="Whatsapp Template">
+                
+                    <setting company_dependent="1" help="Default Whatsapp Template For Request Approval" string="Template Request Approval">
+                        <field name="expense_whatsapp_approval_template"/>
+                    </setting>
+                    <!-- <setting company_dependent="1" help="Default Whatsapp Template For Approval Sending Money" string="Template Sending Approval">
+                        <field name="expense_whatsapp_send_money_template"/>
+                    </setting> -->
+
+                    <setting company_dependent="1" string="Default Journal for Settlement Expense" help="Default Journal for Settlement Expense">
+                        <field name="journal_settlement_expense_id"  options="{'no_create': True}" />
+                    </setting>
+                </block>
+            </app>
+        </field>
+    </record>
+
+</odoo>

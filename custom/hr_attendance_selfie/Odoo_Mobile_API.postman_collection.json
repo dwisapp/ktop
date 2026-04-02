@@ -1,0 +1,473 @@
+{
+  "info": {
+    "name": "Odoo Mobile API - Complete",
+    "description": "Complete API for Mobile App: Authentication, Attendance, Payslip, Leave",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8069/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "employee_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attendance_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "payslip_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "leave_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success) {",
+                  "    pm.environment.set('api_key', jsonData.data.api_key);",
+                  "    pm.environment.set('employee_id', jsonData.data.employee_id);",
+                  "    console.log('API Key saved:', jsonData.data.api_key);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Profile (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "logout"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Attendance",
+      "item": [
+        {
+          "name": "Get Attendance Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attendance/status",
+              "host": ["{{base_url}}"],
+              "path": ["attendance", "status"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Check-In",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success) {",
+                  "    pm.environment.set('attendance_id', jsonData.data.attendance_id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"photo\": \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==\",\n  \"latitude\": -6.028448,\n  \"longitude\": 106.047287\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/attendance/check-in",
+              "host": ["{{base_url}}"],
+              "path": ["attendance", "check-in"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Check-Out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"photo\": \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==\",\n  \"latitude\": -6.028450,\n  \"longitude\": 106.047290\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/attendance/check-out",
+              "host": ["{{base_url}}"],
+              "path": ["attendance", "check-out"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Attendance History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attendance/history?limit=30",
+              "host": ["{{base_url}}"],
+              "path": ["attendance", "history"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "30"
+                },
+                {
+                  "key": "date_from",
+                  "value": "2025-11-01",
+                  "disabled": true
+                },
+                {
+                  "key": "date_to",
+                  "value": "2025-11-30",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Attendance Photo",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attendance/photo/{{attendance_id}}/check_in",
+              "host": ["{{base_url}}"],
+              "path": ["attendance", "photo", "{{attendance_id}}", "check_in"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Payslip",
+      "item": [
+        {
+          "name": "Get Payslip List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success && jsonData.data.payslips.length > 0) {",
+                  "    pm.environment.set('payslip_id', jsonData.data.payslips[0].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payslip/list?year=2025&limit=12",
+              "host": ["{{base_url}}"],
+              "path": ["payslip", "list"],
+              "query": [
+                {
+                  "key": "year",
+                  "value": "2025"
+                },
+                {
+                  "key": "month",
+                  "value": "11",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "12"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Payslip Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payslip/{{payslip_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["payslip", "{{payslip_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Download Payslip PDF",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payslip/{{payslip_id}}/download",
+              "host": ["{{base_url}}"],
+              "path": ["payslip", "{{payslip_id}}", "download"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Leave / Time Off",
+      "item": [
+        {
+          "name": "Get Leave Balance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/leave/balance",
+              "host": ["{{base_url}}"],
+              "path": ["leave", "balance"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Leave List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success && jsonData.data.leaves.length > 0) {",
+                  "    pm.environment.set('leave_id', jsonData.data.leaves[0].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/leave/list?limit=50",
+              "host": ["{{base_url}}"],
+              "path": ["leave", "list"],
+              "query": [
+                {
+                  "key": "state",
+                  "value": "validate",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Request Leave",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success) {",
+                  "    pm.environment.set('leave_id', jsonData.data.leave_id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"leave_type_id\": 1,\n  \"date_from\": \"2025-12-01\",\n  \"date_to\": \"2025-12-05\",\n  \"description\": \"Annual leave - Family vacation\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/leave/request",
+              "host": ["{{base_url}}"],
+              "path": ["leave", "request"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Leave",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/leave/{{leave_id}}/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["leave", "{{leave_id}}", "cancel"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

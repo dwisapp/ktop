@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="fjr_tracksolid_integration.HistoryMap" owl="1">
+        <div class="o_action_manager">
+            <div class="h-100 d-flex flex-column">
+                <!-- Toolbar -->
+                <div class="p-3 bg-white border-bottom d-flex flex-wrap align-items-end gap-3">
+                    <div>
+                        <label class="fw-bold text-muted small">Start Time</label>
+                        <input type="text" class="form-control" t-model="state.startTime" placeholder="YYYY-MM-DD HH:MM:SS"/>
+                    </div>
+                    <div>
+                        <label class="fw-bold text-muted small">End Time</label>
+                        <input type="text" class="form-control" t-model="state.endTime" placeholder="YYYY-MM-DD HH:MM:SS"/>
+                    </div>
+                    <button class="btn btn-primary" t-on-click="onSearch" t-att-disabled="state.loading">
+                        <i class="fa fa-search"/> Load Track
+                    </button>
+                    
+                    <div class="ms-auto" t-if="state.pointCount > 0">
+                        <span class="badge bg-success"><t t-esc="state.pointCount"/> Points Loaded</span>
+                    </div>
+                </div>
+                
+                <!-- Status/Error -->
+                <div t-if="state.loading" class="alert alert-info m-0 rounded-0">
+                    <i class="fa fa-spinner fa-spin"/> Loading GPS data from cloud...
+                </div>
+                <div t-if="state.error" class="alert alert-danger m-0 rounded-0">
+                    <i class="fa fa-exclamation-circle"/> <t t-esc="state.error"/>
+                </div>
+
+                <!-- Map -->
+                <div t-ref="mapContainer" class="flex-grow-1" style="width: 100%; min-height: 60vh; background: #e0e0e0;"></div>
+            </div>
+        </div>
+    </t>
+</templates>

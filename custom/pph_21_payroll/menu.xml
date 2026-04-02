@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <menuitem
+        id="hr_kategori_ter_menu"
+        name="Kategori TER"
+        action="hr_kategori_ter_action"
+        parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+        sequence="50"/>
+
+    <menuitem
+        id="hr_perhitungan_pph_menu"
+        name="Perhitungan PPh"
+        action="hr_perhitungan_pph_action"
+        parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+        sequence="60"/>
+
+</odoo>

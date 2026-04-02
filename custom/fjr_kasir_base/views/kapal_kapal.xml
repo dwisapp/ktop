@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="kapal_kapal_action" model="ir.actions.act_window">
+        <field name="name">Kapal</field>
+        <field name="res_model">kapal.kapal</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Klik untuk menambahkan kapal baru
+            </p>
+        </field>
+    </record>
+
+    <record id="kapal_kapal_view_tree" model="ir.ui.view">
+        <field name="name">kapal.kapal.view.tree</field>
+        <field name="model">kapal.kapal</field>
+        <field name="arch" type="xml">
+            <tree string="" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

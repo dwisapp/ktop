@@ -1,0 +1,207 @@
+/* ===== Kiosk Camera Modal Styles ===== */
+
+/* Fullscreen Overlay */
+.kiosk-camera-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+/* Modal Container */
+.kiosk-camera-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+.kiosk-camera-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #f0f0f0;
+}
+
+.kiosk-camera-header h2 {
+    margin: 0;
+    font-size: 32px;
+    color: #333;
+    font-weight: bold;
+}
+
+.kiosk-camera-header i {
+    color: #00a09d;
+    margin-right: 12px;
+}
+
+/* GPS Info Banner */
+.kiosk-gps-info {
+    background: #d1ecf1;
+    border: 2px solid #00a09d;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #0c5460;
+    font-weight: 600;
+}
+
+.kiosk-gps-info i {
+    color: #00a09d;
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Camera Preview Container */
+.kiosk-camera-preview {
+    position: relative;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    aspect-ratio: 4/3;
+    min-height: 400px;
+}
+
+.kiosk-camera-preview video,
+.kiosk-camera-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Loading State */
+.kiosk-camera-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.kiosk-camera-loading p {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Action Buttons */
+.kiosk-camera-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.kiosk-camera-actions button {
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px;
+    justify-content: center;
+}
+
+.kiosk-camera-actions button i {
+    font-size: 20px;
+}
+
+.kiosk-camera-actions .btn-primary {
+    background: #00a09d;
+    color: white;
+}
+
+.kiosk-camera-actions .btn-primary:hover {
+    background: #008c89;
+    transform: scale(1.05);
+}
+
+.kiosk-camera-actions .btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.kiosk-camera-actions .btn-success:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.kiosk-camera-actions .btn-warning {
+    background: #ffc107;
+    color: #333;
+}
+
+.kiosk-camera-actions .btn-warning:hover {
+    background: #e0a800;
+    transform: scale(1.05);
+}
+
+.kiosk-camera-actions .btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.kiosk-camera-actions .btn-secondary:hover {
+    background: #5a6268;
+    transform: scale(1.05);
+}
+
+/* Responsive for Mobile/Tablet Kiosks */
+@media (max-width: 768px) {
+    .kiosk-camera-modal {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .kiosk-camera-header h2 {
+        font-size: 24px;
+    }
+
+    .kiosk-camera-preview {
+        min-height: 300px;
+    }
+
+    .kiosk-camera-actions {
+        flex-direction: column;
+    }
+
+    .kiosk-camera-actions button {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* Landscape mode for tablets */
+@media (orientation: landscape) and (max-height: 600px) {
+    .kiosk-camera-modal {
+        max-width: 90%;
+        padding: 16px;
+    }
+
+    .kiosk-camera-preview {
+        min-height: 250px;
+    }
+
+    .kiosk-camera-actions button {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="category_fjr_kasir_uang_jalan">
+        <field name="name">Uang Jalan</field>
+        <field name="description">Uang Jalan</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_fjr_kasir_uang_jalan" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="category_fjr_kasir_uang_jalan"/>
+    </record>
+
+    <record id="group_fjr_kasir_uang_jalan_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="category_fjr_kasir_uang_jalan"/>
+        <field name="implied_ids" eval="[(4, ref('group_fjr_kasir_uang_jalan'))]"/>
+    </record>
+
+</odoo>

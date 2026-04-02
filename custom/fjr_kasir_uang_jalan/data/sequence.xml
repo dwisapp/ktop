@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sequence_uang_jalan" model="ir.sequence">
+        <field name="name">Uang Jalan</field>
+        <field name="code">uang.jalan</field>
+        <field name="prefix">UJ/</field>
+        <field name="padding">5</field>
+    </record>
+
+</odoo>

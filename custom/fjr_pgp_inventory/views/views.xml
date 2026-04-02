@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="fjr_pgp_inventory.list">
+      <field name="name">fjr_pgp_inventory list</field>
+      <field name="model">fjr_pgp_inventory.fjr_pgp_inventory</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="fjr_pgp_inventory.action_window">
+      <field name="name">fjr_pgp_inventory window</field>
+      <field name="res_model">fjr_pgp_inventory.fjr_pgp_inventory</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="fjr_pgp_inventory.action_server">
+      <field name="name">fjr_pgp_inventory server</field>
+      <field name="model_id" ref="model_fjr_pgp_inventory_fjr_pgp_inventory"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="fjr_pgp_inventory" id="fjr_pgp_inventory.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="fjr_pgp_inventory.menu_1" parent="fjr_pgp_inventory.menu_root"/>
+    <menuitem name="Menu 2" id="fjr_pgp_inventory.menu_2" parent="fjr_pgp_inventory.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="fjr_pgp_inventory.menu_1_list" parent="fjr_pgp_inventory.menu_1"
+              action="fjr_pgp_inventory.action_window"/>
+    <menuitem name="Server to list" id="fjr_pgp_inventory" parent="fjr_pgp_inventory.menu_2"
+              action="fjr_pgp_inventory.action_server"/>
+-->
+  </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bank Ledger Report Line Tree View -->
+    <record id="view_bank_ledger_report_line_tree" model="ir.ui.view">
+        <field name="name">bank.ledger.report.line.tree</field>
+        <field name="model">bank.ledger.report.line</field>
+        <field name="arch" type="xml">
+            <tree string="Bank Ledger Report" create="false" edit="false" delete="false" export_xlsx="true">
+                <field name="date"/>
+                <field name="reference"/>
+                <field name="description"/>
+                <field name="partner_name" string="Partner"/>
+                <field name="debit" sum="Total Debit"/>
+                <field name="credit" sum="Total Credit"/>
+                <field name="balance"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Bank Ledger Report Line Search View -->
+    <record id="view_bank_ledger_report_line_search" model="ir.ui.view">
+        <field name="name">bank.ledger.report.line.search</field>
+        <field name="model">bank.ledger.report.line</field>
+        <field name="arch" type="xml">
+            <search string="Bank Ledger Report">
+                <field name="date"/>
+                <field name="reference"/>
+                <field name="description"/>
+                <field name="partner_name"/>
+                <filter string="Date" name="group_by_date" context="{'group_by': 'date'}"/>
+                <filter string="Partner" name="group_by_partner" context="{'group_by': 'partner_name'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>

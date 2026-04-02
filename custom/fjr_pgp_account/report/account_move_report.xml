@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_account_move_kwitansi" model="ir.actions.report">
+        <field name="name">Kwitansi</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">fjr_pgp_account.report_account_move_kwitansi</field>
+        <field name="report_file">fjr_pgp_account.report_account_move_kwitansi</field>
+        <field name="print_report_name">'Kwitansi - %s' % object.name</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_account_move_invoice" model="ir.actions.report">
+        <field name="name">Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">fjr_pgp_account.report_account_move_invoice</field>
+        <field name="report_file">fjr_pgp_account.report_account_move_invoice</field>
+        <field name="print_report_name">'Invoice - %s' % object.name</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_account_move_invoice">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="header">
+                        <style>
+                            .table-header tr td{
+                                padding : 3px;
+                                border-top: 1px solid black;
+                                border-bottom: 1px solid black;
+                            }
+                            .table-header{
+                                border: 1px solid black;
+                            }
+                        </style>
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="row">
+                                    <div class="col-3 text-center align-middle" >
+                                        <img class="img-fluid" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;"/>
+                                    </div>
+                                    <div class="col-9">
+                                        <h4 t-field="o.company_id.name"/>
+                                        <div style="font-size: 10px;">
+                                            <span t-field="o.company_id.street"/> <span t-field="o.company_id.street2"/> <span t-field="o.company_id.city"/> - <span t-field="o.company_id.state_id.name"/> 
+                                        </div>
+                                        <div style="font-size:10px">
+                                            Telp. <span t-field="o.company_id.phone"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <table class="table table-borderless table-header">
+                                    <tr class="bg-dark text-white">
+                                        <td class="text-center" colspan="3">
+                                            <h4>
+                                                Invoice
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>No</span>
+                                        </td>
+                                        <td>:</td>
+                                        <td>
+                                            <span t-field="o.name" /> 
+                                            <!-- <span t-field="o.invoice_number_custom" t-if="o.invoice_number_custom" /> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Date</span>
+                                        </td>
+                                        <td>:</td>
+                                        <td>
+                                            <span t-esc="o.invoice_date.strftime('%Y-%m-%d')" t-if="o.invoice_date"/>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <style>
+                            .table-items tr th{
+                                background-color: #f0f0f0;
+                                border : 1px solid black;
+                            }
+                            .table-bordered tr td{
+                                border : 1px solid black;
+                            }
+                            .no_padding tr td{
+                                padding : 3px;
+                            }
+
+                        </style>
+                        <div class="row">
+                            <div class="col-6 p-3 rounded border border-dark">
+                                <span class="font-weight-bold">To :</span>
+                                <p t-field="o.partner_id.name"/>
+                            </div>
+                            <div class="col-1" />
+                            <div class="col-5 p-3 rounded border border-dark">
+                                <p class="border-bottom border-dark">
+                                    
+                                    <strong>PO No.</strong> : <span t-field="o.ref"/> <span t-if="not o.ref">-</span>
+                                </p>
+                            </div>
+                        </div>
+                        <table class="mt-3 table table-bordered table-items">
+                            <thead>
+                                <tr>
+                                    <th width="5%">
+                                        No.
+                                    </th>
+                                    <th width="15%">
+                                        Quantity
+                                    </th>
+                                    <th width="45%">
+                                        Description
+                                    </th>
+                                    <th>
+                                        Unit Price
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.invoice_line_ids" t-as="line">
+                                    <td class="text-center">
+                                        <span t-esc="line_index + 1"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line.quantity" t-options="{'widget':'float', 'precision': o.count_decimal_places(line.quantity)}" /> <span t-field="line.product_uom_id" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-borderless mt-3">
+                            <tr>
+                                <td width="5%">
+                                    <span>Tanggal</span>
+                                </td>
+                                <td width="2%">
+                                    :
+                                </td>
+                                <td>
+                                    <span t-if="o.tanggal_mulai_kegiatan" t-field="o.tanggal_mulai_kegiatan"/> - <span t-if="o.tanggal_selesai_kegiatan" t-field="o.tanggal_selesai_kegiatan"/>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>
+                                    <span>Kapal</span>
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <span t-field="o.kapal_id"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="row">
+                            <div class="col-5"></div>
+                            <div class="col-7">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td>
+                                            <span>Subtotal</span>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="o.amount_untaxed"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Sales Tax</span>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="o.amount_tax"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Total Due</span>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <table class="table table-borderless no_padding" style="padding:2px;border:1px solid black;">
+                                    <tr>
+                                        <td>
+                                            No Rs
+                                        </td>
+                                        <td>
+                                            :
+                                        </td>
+                                        <td>
+                                            RS/PMS/006
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Issue No.
+                                        </td>
+                                        <td>
+                                            :
+                                        </td>
+                                        <td>
+                                            1 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Issue Date
+                                        </td>
+                                        <td>
+                                            :
+                                        </td>
+                                        <td>
+                                            4 Januari 2010
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-center mb-5">
+                                    CILEGON,..................20......
+                                </p>
+                                <br />
+                                <br />
+                                <p class="text-center mt-5">
+                                    <span t-field="o.pic_user_id.name" style="border-top:1px solid black;" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+
+        </t>
+    </template>
+
+
+    <template id="report_account_move_kwitansi">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="header">
+                        <style>
+                            .table-header tr td{
+                                padding : 3px;
+                                border-top: 1px solid black;
+                                border-bottom: 1px solid black;
+                            }
+                            .table-header{
+                                border: 1px solid black;
+                            }
+                        </style>
+                        <div class="row">
+                            <style>
+                               
+                            </style>
+                            <div class="col-7">
+                                <div class="row">
+                                    <div class="col-3 text-center align-middle" >
+                                        <img class="img-fluid" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;"/>
+                                    </div>
+                                    <div class="col-9">
+                                        <h4 t-field="o.company_id.name"/>
+                                        <div style="font-size: 10px;">
+                                            <span t-field="o.company_id.street"/> <span t-field="o.company_id.street2"/> <span t-field="o.company_id.city"/> - <span t-field="o.company_id.state_id.name"/> 
+                                        </div>
+                                        <div style="font-size:10px">
+                                            Telp. <span t-field="o.company_id.phone"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <table class="table table-borderless no_padding" style="padding:2px;border:1px solid black;">
+                                    <tr>
+                                        <td>
+                                            No Rs
+                                        </td>
+                                        <td>
+                                            :
+                                        </td>
+                                        <td>
+                                            RS/PMS/004
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Issue No.
+                                        </td>
+                                        <td>
+                                            :
+                                        </td>
+                                        <td>
+                                            1 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Issue Date
+                                        </td>
+                                        <td>
+                                            :
+                                        </td>
+                                        <td>
+                                            4 Januari 2010
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        
+                        <div class="font-weight-bold">
+                            <h3 class="text-center mb-0 font-weight-bold">
+                                <span class="border-bottom border-dark">
+                                    KWITANSI                            
+                                </span>
+                            </h3>
+                            <p style="font-weight:bold;"  class="mt-0 mb-0 text-center font-weight-bold">
+                            No. <span t-field="o.name" />
+                            </p>
+                        </div>
+                        <table class="table table-borderless mt-3">
+                            <tr>
+                                <td style="font-weight:bold;"  width="25%">
+                                    <span>Sudah Terima Dari</span>
+                                </td>
+                                <td width="2%">
+                                    :
+                                </td>
+                                <td>
+                                    <span t-field="o.partner_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;" >
+                                    <span>Sejumlah Uang</span>
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td class="text-end" >
+                                    <div t-field="o.amount_total" style="border: 1px solid black;border-radius:15px 0px;padding:5px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;" >
+                                    <span>Terbilang</span>
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td >
+                                    <div style="border: 1px solid black;border-radius:15px 0px;padding:5px;" t-esc="o.currency_id.with_context(lang='id_ID').amount_to_text(o.amount_total)" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="ms-3" t-field="o.narration" />
+                        <div class="row mt-3">
+                            <div class="col-6">
+                               <div class="ms-4">
+                                    <p class="mt-0 mb-0">
+                                        Note :
+                                    </p>
+                                    <p class="mt-0 mb-0">
+                                        Kwitansi ini berlaku setelah Cheque/bilyet giro
+                                    </p>
+                                    <p class="mt-0 mb-0">
+                                        Dicairkan dalam rekening <span t-field="o.company_id.name"/>
+                                    </p>
+                               </div>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-end mb-5">
+                                    Cilegon, <span t-field="o.invoice_date" />
+                                </p>
+                                <br />
+                                <br />
+                                <p class="text-end mt-5">
+                                    <span t-field="o.pic_user_id.name" style="border-top:1px solid black;" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="uang_jalan_main_menu"
+        name="Uang Jalan"
+        web_icon="fjr_kasir_uang_jalan,static/description/icon.png"
+        groups="fjr_kasir_uang_jalan.group_fjr_kasir_uang_jalan"
+        sequence="5"/>
+
+    <menuitem
+        id="uang_jalan_menu"
+        name="Transfer Uang Jalan"
+        parent="uang_jalan_main_menu"
+        action="uang_jalan_action"
+        sequence="10"/>
+
+
+    <menuitem
+        id="uang_jalan_report_menu"
+        name="Reporting"
+        parent="uang_jalan_main_menu"
+        groups="fjr_kasir_uang_jalan.group_fjr_kasir_uang_jalan_manager"
+        sequence="90"/>
+     
+
+    <menuitem
+        id="uang_jalan_configuration_menu"
+        name="Configuration"
+        parent="uang_jalan_main_menu"
+        groups="fjr_kasir_uang_jalan.group_fjr_kasir_uang_jalan_manager"
+        sequence="100"/>
+
+    <menuitem
+        id="rute_uang_jalan_menu"
+        name="Rute Uang Jalan"
+        parent="uang_jalan_configuration_menu"
+        action="rute_uang_jalan_action"
+        sequence="5"/>
+
+
+    <menuitem
+        id="kapal_kapal_menu"
+        action="fjr_kasir_base.kapal_kapal_action"
+        groups="fjr_kasir_uang_jalan.group_fjr_kasir_uang_jalan_manager"
+        parent="uang_jalan_configuration_menu"
+        sequence="10"/>
+    
+    <menuitem
+        id="tipe_uang_jalan_menu"
+        action="tipe_uang_jalan_action"
+        groups="fjr_kasir_uang_jalan.group_fjr_kasir_uang_jalan_manager"
+        parent="uang_jalan_configuration_menu"
+        sequence="20"/>
+
+    <menuitem
+        id="uang_jalan_category_menu"
+        action="uang_jalan_category_action"
+        groups="fjr_kasir_uang_jalan.group_fjr_kasir_uang_jalan_manager"
+        parent="uang_jalan_configuration_menu"
+        sequence="30"/>
+
+    <menuitem
+        id="uang_jalan_jenis_barang_menu"
+        action="uang_jalan_jenis_barang_action"
+        groups="fjr_kasir_uang_jalan.group_fjr_kasir_uang_jalan_manager"
+        parent="uang_jalan_configuration_menu"
+        sequence="40"/>
+
+    
+
+</odoo>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleet_vehicle_log_services_view_tree_inherit" model="ir.ui.view">
+        <field name="name">fleet.vehicle.log.services.view.tree.inherit</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_tree"/>
+        <field name="arch" type="xml">
+            <tree position="inside">
+                <header>
+                    <button name="create_purchase_order" string="Create Purchase Order" type="object" class="oe_highlight"/>
+                </header>
+            </tree>
+            <field name="date" position="before">
+                <field name="name" />
+            </field>
+        </field>
+    </record>
+
+    <record id="fleet_vehicle_log_services_view_form_inherit" model="ir.ui.view">
+        <field name="name">fleet.vehicle.log.services.view.form.inherit</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="create_purchase_order" string="Create Purchase Order" type="object" class="oe_highlight" invisible="state == 'cancelled'" groups="purchase.group_purchase_user"/>
+            </header>
+            <widget position="before">
+                <div name="button_box" class="oe_button_box" groups="purchase.group_purchase_user">
+                    <button name="action_view_purchase_order" string="Purchase Order" invisible="not purchase_line_ids"
+                     type="object" class="oe_stat_button" icon="fa-list" groups="purchase.group_purchase_user"/>
+                     <field name="purchase_line_ids" invisible="1" />
+                </div>
+            </widget>
+            <widget position="after">
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                </div>
+            </widget>
+            <field name="vendor_id" position="after">
+                <field name="use_stock" readonly="state in ('done','cancelled')"/>
+                <field name="company_id" invisible="1" />
+                <field name="location_id" invisible="not use_stock" required="use_stock" readonly="state in ('done','cancelled')"/>
+                <field name="location_dest_id" invisible="1"/>
+            </field>
+            <separator position="before">
+                <notebook>
+                    <page name="purchased_items" string="Purchased Items">
+                        <field name="service_part_ids" readonly="state in ('done','cancelled')" widget="one2many_list" >
+                            <tree string="Purchased Items" editable="bottom">
+                                <field name="product_id" domain="[('purchase_ok', '=', True)]"/>
+                                <field name="product_qty"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="stock_items" invisible="not use_stock" string="Stock Items">
+                        <field name="stock_move_ids" widget="stock_move_one2many" readonly="state in ('done','cancel')"  context="{'default_company_id': company_id, 'default_date': date, 'default_date_deadline': date, 'picking_type_code': 'internal', 'form_view_ref': 'stock.view_stock_move_operations',  'default_location_id': location_id, 'default_location_dest_id': location_dest_id}">
+                            <tree decoration-muted="scrapped == True or state == 'cancelled'" string="Stock Moves" editable="1">
+                                <field name="company_id" column_invisible="True"/>
+                                <field name="name" column_invisible="True"/>
+                                <field name="state" readonly="0" column_invisible="True"/>
+                                <field name="picking_type_id" column_invisible="True"/>
+                                <field name="move_line_ids" column_invisible="True"/>
+                                <field name="location_id" column_invisible="True"/>
+                                <field name="location_dest_id" column_invisible="True"/>
+                                <field name="partner_id" column_invisible="True" readonly="state == 'done'"/>
+                                <field name="scrapped" column_invisible="True"/>
+                                <field name="picking_code" column_invisible="True"/>
+                                <field name="product_type" column_invisible="True"/>
+                                <field name="show_details_visible" column_invisible="True"/>
+                                <field name="show_reserved" column_invisible="True"/>
+                                <field name="additional" column_invisible="True"/>
+                                <field name="move_lines_count" column_invisible="True"/>
+                                <field name="is_locked" column_invisible="True"/>
+                                <field name="product_uom_category_id" column_invisible="True"/>
+                                <field name="has_tracking" column_invisible="True"/>
+                                <field name="display_assign_serial" column_invisible="True"/>
+                                <field name="product_id"  domain="[('type', 'in', ['product', 'consu']), ('fleet_usage','=',True)]" context="{'default_detailed_type': 'product', 'default_fleet_usage_loan':True, 'default_fleet_usage': True}" required="1" readonly="(state != 'draft' and not additional) or move_lines_count &gt; 0" force_save="1"/>
+                                <field name="description_picking" string="Description" optional="hide"/>
+                                <field name="date" optional="hide"/>
+                                <field name="date_deadline" optional="hide"/>
+                                <field name="is_quantity_done_editable" column_invisible="True"/>
+                                <field name="show_quant" column_invisible="True"/>
+                                <field name="show_lots_text" column_invisible="True"/>
+                                <field name="show_lots_m2o" column_invisible="True"/>
+                                <field name="display_assign_serial" column_invisible="True"/>
+                                <field name="is_initial_demand_editable" column_invisible="True"/>
+                                <field name="display_import_lot" column_invisible="True"/>
+                                <field name="picking_type_entire_packs" column_invisible="True"/>
+                                <field name="product_packaging_id" column_invisible="1" groups="product.group_stock_packaging" context="{'default_product_id': product_id}" readonly="not product_id"/>
+                                <field name="product_uom_qty" string="Demand" readonly="not is_initial_demand_editable"/>
+                                <field name="forecast_expected_date" column_invisible="True"/>
+                                <field name="forecast_availability" string="Forecast" optional="hide" column_invisible="parent.state in ('draft', 'done') " widget="forecast_widget"/>
+                                <field name="product_qty" readonly="1" column_invisible="True"/>
+                                <field name="quantity" string="Quantity" readonly="not is_quantity_done_editable" column_invisible="1" decoration-danger="product_uom_qty and quantity &gt; product_uom_qty and parent.state not in ['done', 'cancel']"/>
+                                <field name="product_uom" readonly="state != 'draft' and not additional" options="{'no_open': True, 'no_create': True}" string="Unit" groups="uom.group_uom"/>
+                                <field name="product_uom" groups="!uom.group_uom" column_invisible="True"/>
+                                <field name="picked" optional="hide" column_invisible="parent.state=='draft'"/>
+                                <field name="lot_ids" widget="many2many_tags" column_invisible="parent.state == 'draft'" groups="stock.group_production_lot" invisible="not show_details_visible or has_tracking != 'serial'" optional="hide" options="{'create': [('parent.use_create_lots', '=', True)]}" context="{'default_company_id': company_id, 'default_product_id': product_id, 'active_picking_id': parent.id}" domain="[('product_id','=',product_id)]"/>
+                                <button name="action_assign_serial" type="object" icon="fa-plus-square" role="img" title="Assign Serial Numbers" invisible="not display_assign_serial"/>
+                                <button type="object" name="action_product_forecast_report" title="Forecast Report" icon="fa-area-chart" invisible="quantity == 0 and forecast_availability &lt;= 0 "/>
+                                <button type="object" name="action_product_forecast_report" title="Forecast Report" icon="fa-area-chart text-danger" invisible="quantity &gt; 0 or forecast_availability &gt; 0 "/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </separator>
+        </field>
+    </record>
+
+    <record id="fleet_vehicle_log_services_view_search_inherit" model="ir.ui.view">
+        <field name="name">fleet.vehicle.log.services.view.search.inherit</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_search"/>
+        <field name="arch" type="xml">
+            <separator position="after">
+                <filter string="No Purchase" name="no_purchase" domain="[('active_purchase', '=', False)]"/>
+                <separator />
+            </separator>
+        </field>
+    </record>
+
+</odoo>

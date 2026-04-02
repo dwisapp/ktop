@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="erp_integration_main_menu"
+        name="Jasa ERP Integration"
+        web_icon="fjr_kasir_jasa_erp,static/description/icon.png"
+        sequence="30"/>
+
+    <menuitem
+        id="jasa_erp_sales_menu"
+        name="Sales"
+        parent="erp_integration_main_menu"
+        sequence="10"/>
+
+    <menuitem
+        id="jasa_erp_sales_order_menu"
+        name="Sales Order"
+        action="jasa_erp_sales_order_action"
+        parent="jasa_erp_sales_menu"
+        sequence="10"/>
+    
+    <menuitem
+        id="jasa_erp_delivery_note_menu"
+        name="Delivery Note"
+        action="jasa_erp_delivery_note_action"
+        parent="jasa_erp_sales_menu"
+        sequence="20"/>
+
+    <menuitem
+        id="jasa_erp_driver_menu"
+        name="Driver"
+        action="fjr_kasir_base.res_partner_driver_action"
+        parent="erp_integration_main_menu"
+        sequence="20"/>
+
+    <menuitem
+        id="jasa_erp_vehicle_menu"
+        name="Vehicle"
+        action="fleet.fleet_vehicle_action"
+        parent="erp_integration_main_menu"
+        sequence="30"/>
+
+    
+
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="JasaErpSalesOrder.get_sales_order_button" owl="1">
+        <button type="button" class="btn btn-secondary" t-on-click="onClickGetSalesOrder">
+            Get Sales Order
+        </button>
+    </t>
+
+    <t t-name="JasaErpSalesOrderListView.buttons" t-inherit="web.ListView.Buttons" t-inherit-mode="primary" owl="1">
+        <!-- Before the export button -->
+        <xpath expr="//t[contains(@t-if, 'isExportEnable')]" position="before">
+            <t t-call="JasaErpSalesOrder.get_sales_order_button"/>
+        </xpath>
+    </t>
+
+    <t t-name="JasaErpDeliveryOrder.get_delivery_order_button" owl="1">
+        <button type="button" class="btn btn-secondary" t-on-click="onClickGetDeliveryOrder">
+           Get Delivery Order
+        </button>
+    </t>
+
+    <t t-name="JasaErpDeliveryOrderListView.buttons" t-inherit="web.ListView.Buttons" t-inherit-mode="primary" owl="1">
+        <!-- Before the export button -->
+        <xpath expr="//t[contains(@t-if, 'isExportEnable')]" position="before">
+            <t t-call="JasaErpDeliveryOrder.get_delivery_order_button"/>
+        </xpath>
+    </t>
+
+    <t t-name="JasaErpDriver.get_driver_button" owl="1">
+        <button type="button" class="btn btn-secondary" t-on-click="onClickGetDriver">
+           Get Driver
+        </button>
+    </t>
+
+    <t t-name="JasaErpDriverListView.buttons" t-inherit="web.ListView.Buttons" t-inherit-mode="primary" owl="1">
+        <!-- Before the export button -->
+        <xpath expr="//t[contains(@t-if, 'isExportEnable')]" position="before">
+            <t t-call="JasaErpDriver.get_driver_button"/>
+        </xpath>
+    </t>
+
+    <t t-name="JasaErpVehicle.get_vehicle_button" owl="1">
+        <button type="button" class="btn btn-secondary" t-on-click="onClickGetVehicle">
+           Get Vehicle
+        </button>
+    </t>
+
+    <t t-name="JasaErpVehicleListView.buttons" t-inherit="web.ListView.Buttons" t-inherit-mode="primary" owl="1">
+        <!-- Before the export button -->
+        <xpath expr="//t[contains(@t-if, 'isExportEnable')]" position="before">
+            <t t-call="JasaErpVehicle.get_vehicle_button"/>
+        </xpath>
+    </t>
+
+</templates>

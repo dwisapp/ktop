@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="jasa_erp_delivery_note_action" model="ir.actions.act_window">
+        <field name="name">Delivery Note</field>
+        <field name="res_model">jasa.erp.delivery.note</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new delivery note.
+            </p>
+        </field>
+    </record>
+
+    <record id="jasa_erp_delivery_note_view_tree" model="ir.ui.view">
+        <field name="name">jasa.erp.delivery.note.view.tree</field>
+        <field name="model">jasa.erp.delivery.note</field>
+        <field name="arch" type="xml">
+            <tree string="" create="0" edit="0" delete="0">
+                <field name="name" />
+                <field name="sales_order_ids" widget="many2many_tags" />
+                <field name="customer_name" />
+                <field name="driver_id" />
+                <field name="fleet_id" />
+                <field name="jenis_barang" />
+                <field name="tujuan_bongkar" />
+                <field name="tempat_muat" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="jasa_erp_delivery_note_view_form" model="ir.ui.view">
+        <field name="name">jasa.erp.delivery.note.view.form</field>
+        <field name="model">jasa.erp.delivery.note</field>
+        <field name="arch" type="xml">
+            <form string="" create="0" edit="0" delete="0">
+                <header>
+                
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+
+                    </div>
+
+
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sales_order_ids" widget="many2many_tags" />
+                            <field name="customer_name" />
+                            <field name="driver_id" />
+                           
+                        </group>
+                        <group>
+                            <field name="fleet_id" />
+                            <field name="jenis_barang" />
+                            <field name="tujuan_bongkar" />
+                            <field name="tempat_muat" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="items" string="Items">
+                            <field name="item_ids">
+                                <tree>
+                                    <field name="item_code" />
+                                    <field name="item_name" />
+                                    <field name="qty" />
+                                    <field name="uom" />
+                                    <field name="rate" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

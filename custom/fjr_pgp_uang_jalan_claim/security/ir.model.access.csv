@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_uang_jalan_driver_claim_all,fjr_pgp_uang_jalan_claim.uang.jalan.driver.claim.all,model_uang_jalan_driver_claim,base.group_user,1,0,0,0
+access_uang_jalan_driver_claim_user,fjr_pgp_uang_jalan_claim.uang.jalan.driver.claim,model_uang_jalan_driver_claim,fjr_pgp_uang_jalan_claim.group_fjr_uang_jalan_claim,1,1,1,1

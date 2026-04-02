@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_note_user,fjr_pgp_sale.delivery.note,model_delivery_note,fjr_pgp_sale.group_delivery_note,1,1,1,1
+access_delivery_note_line_user,fjr_pgp_sale.delivery.note.line,model_delivery_note_line,fjr_pgp_sale.group_delivery_note,1,1,1,1
+access_wizard_change_sale_order_user,fjr_pgp_sale.wizard.change.sale.order,model_wizard_change_sale_order,base.group_user,1,1,1,1
+access_res_tempat_muat_user,fjr_pgp_sale.res.tempat.muat,model_res_tempat_muat,base.group_user,1,1,1,1
+access_res_tujuan_bongkar_user,fjr_pgp_sale.res.tujuan.bongkar,model_res_tujuan_bongkar,base.group_user,1,1,1,1

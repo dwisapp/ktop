@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="uang_jalan_action" model="ir.actions.act_window">
+        <field name="name">Transfer Uang Jalan</field>
+        <field name="res_model">uang.jalan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new Transfer uang jalan.
+            </p>
+        </field>
+    </record>
+
+    <record id="uang_jalan_view_tree" model="ir.ui.view">
+        <field name="name">uang.jalan.view.tree</field>
+        <field name="model">uang.jalan</field>
+        <field name="arch" type="xml">
+
+            <tree string="" default_order="name desc" create="1" delete="0">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" confirm="Apakah anda yakin konfirmasi uang jalan ini?"/>
+                    <button name="action_send" string="Send" type="object" class="oe_highlight" confirm="Apakah anda yakin ingin mengirim uang jalan ini?"/>
+
+                </header>
+                <field name="id" column_invisible="1" />
+                <field name="name" />
+                <field name="date" />
+                <field name="driver_employee_id"  optional="show" />
+                <field name="total_amount" />
+                <field name="sale_order_id" optional="show" />
+                <field name="delivery_notes_id" optional="show" />
+                <field name="tanggal_transfer" optional="hide" />
+                <field name="state" widget="badge" decoration-danger="state in ('cancel', 'failed')" decoration-primary="state == 'process'" decoration-info="state == 'confirm'" decoration-success="state == 'done'" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="uang_jalan_view_form" model="ir.ui.view">
+        <field name="name">uang.jalan.view.form</field>
+        <field name="model">uang.jalan</field>
+        <field name="arch" type="xml">
+            <form string="" create="1">
+                <field name="available_sale_order_ids" invisible="1" />
+                <field name="driver_partner_id" invisible="1" />
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_send" string="Send" type="object" class="oe_highlight" invisible="state != 'confirm'" confirm="Apakah anda yakin ingin mengirim uang jalan ini?"/>
+                    <button name="action_draft" string="Set to Draft" type="object"  invisible="state != 'cancel'"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ('cancel','process', 'done')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="driver_employee_id" readonly="state != 'draft'" options="{'no_create':True}" />
+                            <field name="fleet_id" readonly="state != 'draft'" />
+                            <field name="uang_jalan_jenis_barang_id" readonly="state != 'draft'" />
+                            <field name="company_id" readonly="state != 'draft'" invisible="1" groups="!base.group_multi_company" />
+                            <field name="company_id" readonly="state != 'draft'"  groups="base.group_multi_company" />
+                        </group>
+                        <group>
+                            <field name="tanggal_transfer" invisible="not tanggal_transfer" />
+                            <field name="delivery_notes_id" readonly="state != 'draft'" domain="[('state','not in',('cancel',))]" required="1"  options="{'no_create':True}"/>
+                            <field name="sale_order_id" readonly="state != 'draft'"  required="1" options="{'no_create':True}" />
+                            <field name="tipe_uang_jalan_id" readonly="state != 'draft'" options="{'no_create':True}" />
+                        </group>
+                    </group>
+                    <group>
+                       
+                        <group>
+                            <field name="rute_uang_jalan_id" options="{'no_create':True, 'no_open':True}" readonly="state != 'draft'" />
+                            <label for="amount" />
+                            <div class="row">
+                                <field name="amount" class="oe_inline" />
+                                <div class="ms-3 oe_inline" invisible="not adjusted_amount">
+                                
+                                    <span class="oe_inline">+</span>
+                                    <field name="adjusted_amount" class="ms-3 oe_inline" />
+                                </div>
+                                <button name="action_adjust_uang_jalan" string="Adjust" type="object" class="oe_inline oe_highlight" invisible="state != 'draft'"/>
+
+                            </div>
+                            
+                            <field name="tempat_muat" />
+                            <field name="tujuan_bongkar" />
+
+                        </group>
+                         <group>
+                            <field name="uang_jalan_category_id" readonly="state != 'draft'" />
+                            <field name="bank_account_id" readonly="state != 'draft'" options="{'no_create':True}" force_save="1" required="1" />
+                            <!-- <field name="no_rekening" readonly="1" force_save="1" required="1" /> -->
+                            <!-- <field name="bank_account_name" readonly="1" force_save="1"  /> -->
+                            <field name="kapal_id" readonly="state != 'draft'" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="notes" string="Notes">
+                            <group>
+                            
+                                <field name="notes" readonly="state != 'draft'" colspan="2" nolabel="1" />
+                            </group>
+                        </page>
+                        <page name="adjustments" string="Adjustments">
+                            <field name="uang_jalan_adjust_line_ids">
+
+                                <tree string="" create="0" edit="0" delete="0">
+                                    <field name="name" />
+                                    <field name="amount" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="uang_jalan_adjust_line_view_tree" model="ir.ui.view">
+        <field name="name">uang.jalan.adjust.line.view.tree</field>
+        <field name="model">uang.jalan.adjust.line</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="amount" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="uang_jalan_adjust_line_view_form" model="ir.ui.view">
+        <field name="name">uang.jalan.adjust.line.view.form</field>
+        <field name="model">uang.jalan.adjust.line</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="uang_jalan_id" invisible="1" />
+                        <field name="name" />
+                        <field name="amount" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="uang_jalan_view_search" model="ir.ui.view">
+        <field name="name">uang.jalan.view.search</field>
+        <field name="model">uang.jalan</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name" string="No. Transfer"  filter_domain="[
+                '|', '|', '|',
+                ('name', 'ilike', self), ('driver_employee_id', 'ilike', self), ('sale_order_id', 'ilike', self), ('delivery_notes_id', 'ilike', self)]" />
+                <field name="driver_employee_id" />
+                <field name="sale_order_id" />
+                <field name="delivery_notes_id" />
+
+                <filter string="Draft" name="filter_draft" domain="[('state', '=', 'draft')]" />
+                <filter string="Confirm" name="filter_confirm" domain="[('state', '=', 'confirm')]" />
+                <filter string="Process" name="filter_process" domain="[('state', '=', 'process')]" />
+                <filter string="Done" name="filter_done" domain="[('state', '=', 'done')]" />
+                <filter string="Failed or Cancel" name="filter_cancel" domain="[('state', 'in', ('cancel', 'failed'))]" />
+
+                <group expand="0" string="Group By">
+                    <filter string="Tanggal Transfer" name="group_tanggal_transfer" context="{'group_by': 'tanggal_transfer'}" />
+                    <filter string="Driver" name="group_driver" context="{'group_by': 'driver_employee_id'}" />
+                    <filter string="Jenis Barang" name="group_jenis_barang" context="{'group_by': 'uang_jalan_jenis_barang_id'}" />
+                    <filter string="Delivery Note" name="group_delivery_note" context="{'group_by': 'delivery_notes_id'}" />
+                    <filter string="State" name="group_state" context="{'group_by': 'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+</odoo>

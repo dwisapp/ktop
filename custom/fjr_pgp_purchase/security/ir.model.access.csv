@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order_approval_user,fjr_pgp_purchase.purchase.order.approval,model_purchase_order_approval,base.group_user,1,1,1,1
+access_purchase_order_approval_line_user,fjr_pgp_purchase.purchase.order.approval.line,model_purchase_order_approval_line,base.group_user,1,1,1,1
+access_purchase_order_approval_line_per_user_user,fjr_pgp_purchase.purchase.order.approval.line.per.user,model_purchase_order_approval_line_per_user,base.group_user,1,1,1,1

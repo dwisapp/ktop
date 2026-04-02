@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_view_id_inherit_module_name" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form"  position="inside">
+                <app string="Jasa ERP Integration" data-string="Jasa ERP Integration" name="fjr_kasir_jasa_erp" >
+                    <block title="Authentication" name="Authentication">
+
+                        <setting  string="Url &amp; Last Get Data">
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label for="jasa_erp_url" class="col-lg-4 o_light_label" />
+                                    <field name="jasa_erp_url"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="last_get_data"  class="col-lg-4 o_light_label"/>
+                                    <field name="last_get_data"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting  string="Auth Detail">
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label for="jasa_erp_email" class="col-lg-4 o_light_label" />
+                                    <field name="jasa_erp_email"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="jasa_erp_password"  class="col-lg-4 o_light_label"/>
+                                    <field name="jasa_erp_password" type="password"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="last_auth_date"  class="col-lg-4 o_light_label"/>
+                                    <field name="last_auth_date" />
+                                </div>
+                            </div>
+                        </setting>
+                    </block >
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

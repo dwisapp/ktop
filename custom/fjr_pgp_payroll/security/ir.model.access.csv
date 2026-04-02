@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_payroll_other_input_user,fjr_pgp_payroll.hr.payroll.other.input,model_hr_payroll_other_input,base.group_user,1,1,1,1
+access_hr_payroll_other_input_line_user,fjr_pgp_payroll.hr.payroll.other.input.line,model_hr_payroll_other_input_line,base.group_user,1,1,1,1
+access_hr_payment_per_delivery_user,fjr_pgp_payroll.hr.payment.per.delivery,model_hr_payment_per_delivery,base.group_user,1,1,1,1
+access_hr_payslip_payment_per_delivery_user,fjr_pgp_payroll.hr.payslip.payment.per.delivery,model_hr_payslip_payment_per_delivery,base.group_user,1,1,1,1

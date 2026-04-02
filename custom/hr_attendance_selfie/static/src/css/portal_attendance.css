@@ -1,0 +1,234 @@
+/**
+ * Employee Attendance Portal - Styling
+ *
+ * Mobile-first responsive design for attendance portal
+ */
+
+/* ==================== CAMERA PREVIEW ==================== */
+
+.camera-preview-wrapper {
+    position: relative;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#camera-video {
+    transform: scaleX(-1); /* Mirror effect for selfie */
+    -webkit-transform: scaleX(-1);
+}
+
+#photo-preview {
+    transform: scaleX(-1); /* Mirror effect for selfie */
+    -webkit-transform: scaleX(-1);
+}
+
+#camera-loading {
+    background-color: #f8f9fa;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================== GPS STATUS ==================== */
+
+#gps-status-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-left: 4px solid #0d6efd;
+    font-size: 0.95rem;
+}
+
+#gps-status-container i {
+    font-size: 1.2rem;
+}
+
+/* ==================== BUTTONS ==================== */
+
+.btn-group-lg > .btn {
+    margin: 0 5px;
+    min-width: 150px;
+}
+
+@media (max-width: 576px) {
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-group-lg > .btn {
+        margin: 5px 0;
+        width: 100%;
+    }
+}
+
+/* ==================== CARDS ==================== */
+
+.card {
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ==================== BADGE STATES ==================== */
+
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.badge.bg-success {
+    background-color: #198754 !important;
+    animation: pulse-success 2s infinite;
+}
+
+@keyframes pulse-success {
+    0% {
+        box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(25, 135, 84, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(25, 135, 84, 0);
+    }
+}
+
+/* ==================== TABLE STYLING ==================== */
+
+.table {
+    font-size: 0.95rem;
+}
+
+.table thead th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+
+@media (max-width: 768px) {
+    .card-header h3,
+    .card-header h4,
+    .card-header h5 {
+        font-size: 1.2rem;
+    }
+
+    .camera-preview-wrapper {
+        max-width: 100% !important;
+    }
+
+    .table {
+        font-size: 0.85rem;
+    }
+}
+
+/* ==================== LOADING ANIMATIONS ==================== */
+
+.fa-spin {
+    animation: fa-spin 1s infinite linear;
+}
+
+@keyframes fa-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== ALERT IMPROVEMENTS ==================== */
+
+.alert {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert i {
+    margin-right: 8px;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+button:focus {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+/* ==================== MOBILE OPTIMIZATIONS ==================== */
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+
+    h5 {
+        font-size: 1.1rem;
+    }
+}
+
+/* ==================== PORTRAIT MODE OPTIMIZATIONS ==================== */
+
+@media (orientation: portrait) and (max-width: 768px) {
+    #camera-video,
+    #photo-preview {
+        max-height: 60vh;
+        object-fit: cover;
+    }
+}
+
+/* ==================== DARK MODE SUPPORT (Optional) ==================== */
+
+@media (prefers-color-scheme: dark) {
+    .camera-preview-wrapper {
+        background-color: #1a1a1a;
+    }
+
+    #camera-loading {
+        background-color: #2d2d2d;
+        color: #ffffff;
+    }
+
+    .table tbody tr:hover {
+        background-color: #2d2d2d;
+    }
+}

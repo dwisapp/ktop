@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="uang_jalan_view_form_inherit" model="ir.ui.view">
+        <field name="name">uang.jalan.view.form.inherit</field>
+        <field name="model">uang.jalan</field>
+        <field name="inherit_id" ref="fjr_kasir_uang_jalan.uang_jalan_view_form"/>
+        <field name="arch" type="xml">
+            <field name="tempat_muat" position="before">
+                <field name="potongan_claim" invisible="not potongan_claim" readonly="1"/>
+                <field name="uang_jalan_driver_claim_id" invisible="not uang_jalan_driver_claim_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

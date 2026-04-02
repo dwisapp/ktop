@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add Selfie Settings to Attendance Configuration -->
+    <record id="res_config_settings_view_form_inherit_selfie" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.selfie</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_attendance.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add Selfie block after Extra Hours block -->
+            <block name="overtime_settings" position="after">
+                <block title="Selfie Validation" name="selfie_attendance_settings">
+
+                    <!-- Enable/Disable Check-in Selfie -->
+                    <setting string="Selfie for Check-in" help="Mandatory selfie photo for check-in">
+                        <field name="attendance_selfie_check_in"/>
+                    </setting>
+
+                    <!-- Enable/Disable Check-out Selfie -->
+                    <setting string="Selfie for Check-out" help="Mandatory selfie photo for check-out">
+                        <field name="attendance_selfie_check_out"/>
+                    </setting>
+
+                    <!-- Photo Quality -->
+                    <setting string="Photo Quality" help="Quality of captured photos">
+                        <field name="attendance_photo_quality" class="w-50"/>
+                    </setting>
+
+                    <!-- Max Photo Size -->
+                    <setting string="Max Photo Size" help="Maximum file size in KB">
+                        <field name="attendance_photo_max_size" class="text-center" style="width: 10%; min-width: 4rem;"/>
+                        <span> KB</span>
+                    </setting>
+
+                    <!-- Use Front Camera -->
+                    <setting string="Use Front Camera" help="Auto switch to front camera for selfie (mobile devices)">
+                        <field name="attendance_camera_front_default"/>
+                    </setting>
+
+                    <!-- Show Preview -->
+                    <setting string="Show Camera Preview" help="Show live preview before capture">
+                        <field name="attendance_camera_show_preview"/>
+                    </setting>
+
+                    <!-- Allow Retake -->
+                    <setting string="Allow Retake Photo" help="User can retake photo before submit">
+                        <field name="attendance_camera_allow_retake"/>
+                    </setting>
+
+                    <!-- GPS Capture -->
+                    <setting string="Capture GPS Location" help="Capture GPS using Odoo built-in fields">
+                        <field name="attendance_use_gps"/>
+                    </setting>
+
+                    <!-- Employee View Rights -->
+                    <setting string="Employee Can View" help="Photos that employees can view">
+                        <field name="attendance_employee_view_rights" class="w-50"/>
+                    </setting>
+
+                    <!-- Manager View Rights -->
+                    <setting string="Manager Can View" help="Photos that managers can view">
+                        <field name="attendance_manager_view_rights" class="w-50"/>
+                    </setting>
+
+                </block>
+            </block>
+
+        </field>
+    </record>
+
+</odoo>

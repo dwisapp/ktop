@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_purchase_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.purchase.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+        <field name="arch" type="xml">
+            <setting id="po_order_approval" position="replace">
+                <setting id="po_order_approval" company_dependent="1" help="Request managers to approve orders above a minimum amount">
+                    <field name="po_order_approval"/>
+                    <div class="content-group" invisible="not po_order_approval">
+                        <div class="row mt16">
+                            <field widget="one2many" nolabel="1" name="purchase_order_approval_ids" class="w-100" context="{'default_company_id': company_id}" />
+                            <label for="purchase_order_approval_whatsapp_template_id" class="col-lg-4 o_light_label"/>
+                            <field name="purchase_order_approval_whatsapp_template_id" domain="[('model','=', 'purchase.order.approval.line.per.user')]" />
+                            <!-- </field> -->
+                        </div>
+                    </div>
+
+                </setting>
+            </setting>
+
+
+        </field>
+    </record>
+
+</odoo>

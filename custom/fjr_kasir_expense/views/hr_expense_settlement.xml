@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_expense_settlement_action" model="ir.actions.act_window">
+        <field name="name">Settlement Expense</field>
+        <field name="res_model">hr.expense.settlement</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Klik tombol Create untuk membuat settlement expense baru
+            </p>
+        </field>
+    </record>
+
+    <record id="hr_expense_settlement_view_tree" model="ir.ui.view">
+        <field name="name">hr.expense.settlement.view.tree</field>
+        <field name="model">hr.expense.settlement</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="date" />
+                <field name="expense_id" />
+                <field name="employee_id" />
+                <field name="total_expense" sum="Total 1"/>
+                <field name="amount" sum="Total 1"/>
+                <field name="amount_diff" sum="Total 1"/>
+                <field name="settlement_status"/>
+                <field name="state" />
+                <field name="currency_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_expense_settlement_view_form" model="ir.ui.view">
+        <field name="name">hr.expense.settlement.view.form</field>
+        <field name="model">hr.expense.settlement</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <field name="currency_id" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+                <field name="id" invisible="1"/>
+                <!-- <field name="selectable_payment_method_line_ids" invisible="1"/> -->
+
+
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done" />
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_post_settlement" string="Post Settlement" type="object" class="btn-primary" groups="hr_expense.group_hr_expense_manager" invisible="state != 'confirm'" confirm="Apakah anda yakin akan posting journal settlement ini ?"/>
+                    <button name="action_create_payment" string="Create Sisa Payment" type="object" class="btn-primary" groups="hr_expense.group_hr_expense_manager" invisible="state != 'need_payment'" confirm="Apakah anda yakin melakukan penerimaan/pembayaran atas sisa settlement ini ?"/>
+                    
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-secondary" invisible="state == 'cancel'"/>
+                    <button name="action_draft" string="Set to Draft" type="object" class="btn-secondary" invisible="state != 'cancel'"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_inline"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="payment_ids" invisible="1"/>
+                        <button name="action_open_journal_entry"  type="object" class="oe_stat_button" invisible="move_count == 0" icon="fa-list">
+
+                            <field name="move_count" widget="statinfo" string="Journal Entries" />
+                        </button>
+                        <button name="action_open_payment"  type="object" string="Payment" invisible="not payment_ids" icon="fa-money" />
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date" readonly="state != 'draft'" />
+                            <field name="expense_id" readonly="state != 'draft'" domain='[("state", "=", "done"), ("payment_mode", "=", "company_account"), "|",("settlement_id", "=", False),("settlement_id","=",id)]' required="1" options="{'no_open': True,'no_create': True, 'no_create_edit': True,'no_quick_create': True}"/>
+                            <field name="employee_id" />
+                            <field name="company_id" groups="base.group_multi_company" readonly="state != 'draft'" />
+                        </group>
+                        <group>
+                            <field name="total_expense" />
+                             <label for="amount" string="Settlement Amount" readonly="state != 'draft'" />
+                            <div class="o_row" >
+                                <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline mw-50 me-0" />
+                                <field  name="currency_id" class="mw-25 ms-0" groups="base.group_multi_currency" options="{'no_create': True}" />
+                            </div>
+                            <field name="amount_diff"/>
+                            <field name="settlement_status"/>
+                            <field name="journal_settlement_id" readonly="state != 'draft'" options="{'no_open': True,'no_create': True, 'no_create_edit': True,'no_quick_create': True}"/>
+                            <!-- <field name="account_id" readonly="state != 'draft'" /> -->
+                            <!-- <label for="sisa_account_id" string="Account Piutang Karyawan" invisible="amount &lt;= total_expense" />
+                            <label for="sisa_account_id" string="Account Hutang Karyawan" invisible="amount &gt; total_expense" /> -->
+                            <field name="sisa_account_id"  invisible="amount &gt;= total_expense" required="amount &lt; total_expense" readonly="state != 'draft'" options="{'no_open': True,'no_create': True, 'no_create_edit': True,'no_quick_create': True}" domain="[('account_type','=', 'asset_receivable'),('deprecated', '!=', True)]"  />
+                            <field name="sisa_account_id"  invisible="amount &lt;= total_expense" required="amount &gt; total_expense" readonly="state != 'draft'" options="{'no_open': True,'no_create': True, 'no_create_edit': True,'no_quick_create': True}" domain="[('account_type','=', 'liability_payable'),('deprecated', '!=', True)]"/>
+                            <!-- <field name="payment_method_line_id" invisible="amount == total_expense or state not in ('need_payment','done')" required="amount != total_expense and state in ('need_payment','done') " readonly="state != 'need_payment'" context="{'show_payment_journal_id': 1}" /> -->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Settlement List">
+                            <field name="line_ids" nolabel="1" readonly="state in ['approve','need_payment','done']" >
+                                <tree editable="bottom">    
+                                    <field name="company_id" column_invisible="1" />
+                                    <field name="product_id" />
+                                    <field name="name"/>
+                                    <field name="account_id" options="{'no_open': True,'no_create': True, 'no_create_edit': True,'no_quick_create': True}"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="currency_id" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="hr_expense_settlement_view_search" model="ir.ui.view">
+        <field name="name">hr.expense.settlement.view.search</field>
+        <field name="model">hr.expense.settlement</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name" filter_domain="['|',('name', 'ilike', self), ('employee_id', 'ilike', self)]"/>
+                <field name="employee_id" />
+
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Need Payment" name="need_payment" domain="[('state', '=', 'need_payment')]"/>
+                <filter string="Complete" name="complete" domain="[('state', '=', 'done')]"/>
+
+                <group>
+                    <filter string="Employee" name="employee_id" context="{'group_by':'employee_id'}"/>
+                    <filter string="Status" name="state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <menuitem
+        id="hr_expense_settlement_menu"
+        action="hr_expense_settlement_action"
+        groups="base.group_user"
+        parent="hr_expense.menu_hr_expense_root"
+        sequence="10"/>
+    
+</odoo>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_payroll_other_input_action" model="ir.actions.act_window">
+        <field name="name">Deduction and Allowance</field>
+        <field name="res_model">hr.payroll.other.input</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{
+            'search_default_state_draft': 1,
+        }</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to Create New Deduction and Allowance
+            </p>
+        </field>
+    </record>
+
+
+    <record id="hr_payroll_other_input_view_tree" model="ir.ui.view">
+        <field name="name">hr.payroll.other.input.view.tree</field>
+        <field name="model">hr.payroll.other.input</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" />
+                </header>
+                <field name="name" optional="show" />
+                <field name="employee_ids" string="Employees" widget="many2many_tags" optional="show" />
+                <field name="department_ids" string="Departments" widget="many2many_tags" optional="show" />
+                <field name="category_ids" string="Categories" widget="many2many_tags" optional="show" />
+                <field name="start_date" optional="show" />
+                <field name="end_date" optional="show" />
+                <field name="amount" optional="show" />
+                <field name="input_type_id" optional="show" />
+                <field name="state" optional="show" widget="badge" decoration-info="state == 'draft'" decoration-danger="state == 'cancel'" decoration-success="state == 'confirm'" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_payroll_other_input_view_form" model="ir.ui.view">
+        <field name="name">hr.payroll.other.input.view.form</field>
+        <field name="model">hr.payroll.other.input</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <field name="hr_payslip_input_ids" invisible="1" />
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,cancel" />
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" invisible="state != 'draft'" />
+                    <button name="action_cancel" type="object" string="Cancel"  invisible="state == 'cancel'" />
+                    <button name="action_draft" type="object" string="Reset to Draft"  invisible="state == 'draft'" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-calculator" type="object" name="action_view_payslip" string="Payslips" invisible="not hr_payslip_input_ids" />
+
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Description" readonly="state != 'draft'" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="input_type_id" readonly="state != 'draft'" />
+                            <field name="input_mode" readonly="state != 'draft'" />
+                            <field name="company_id" invisible="1" groups="!base.group_multi_company" readonly="state != 'draft'" />
+                            <field name="company_id" groups="base.group_multi_company" invisible="input_mode != 'company'" readonly="state != 'draft'" />
+                            <field name="employee_ids" invisible="input_mode != 'employee'" required="input_mode == 'employee'" widget="many2many_tags" readonly="state != 'draft'" />
+                            <field name="department_ids" invisible="input_mode != 'department'" required="input_mode == 'department'" widget="many2many_tags" readonly="state != 'draft'" />
+                            <field name="category_ids" invisible="input_mode != 'category'" required="input_mode == 'category'" widget="many2many_tags" readonly="state != 'draft'" />
+                            
+                        </group>
+                        <group>
+                            <label for="amount" string="Total" readonly="state != 'draft'" />
+                            <div class="o_row" >
+                                <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"  class="oe_inline mw-50 me-0" readonly="state != 'draft'"/>
+                                <field name="currency_id" class="mw-25 ms-0" groups="base.group_multi_currency" options="{'no_create': True}" readonly="state != 'draft'"/>
+                            </div>
+                            <field name="decreased_every_month" readonly="state != 'draft'"/>
+                            <field name="start_date" required="decreased_every_month" widget="daterange" options="{'end_date_field': 'end_date'}" readonly="state != 'draft'" />
+                            <field name="end_date" required="decreased_every_month" invisible="1" readonly="state != 'draft'" />
+                        </group>
+                    </group>
+                    <notebook invisible="not decreased_every_month">
+                        <page name="monthly_decrease" string="Monthly Decrease">
+                            <field name="input_line_ids" widget="one2many_list" readonly="state != 'draft'" >
+                                <tree editable="bottom">
+                                    <field name="date" readonly="1" force_save="1" required="1"/>
+                                    <field name="amount" />
+                                    <field name="currency_id" column_invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_payroll_other_input_view_search" model="ir.ui.view">
+        <field name="name">hr.payroll.other.input.view.search</field>
+        <field name="model">hr.payroll.other.input</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name" string="Description" filter_domain="['|', ('name', 'ilike', self), ('input_type_id.name', 'ilike', self)]" />
+                <field name="employee_ids" string="Employees" />
+                <field name="department_ids" string="Departments" />
+                <field name="category_ids" string="Categories" />
+
+                <filter name="state_draft" string="Draft" domain="[('state', '=', 'draft')]" />
+                <filter name="state_confirm" string="Confirmed" domain="[('state', '=', 'confirm')]" />
+                <filter name="state_cancel" string="Cancelled" domain="[('state', '=', 'cancel')]" />
+
+                <group expand="0" string="Group By">
+                    <filter name="group_by_input_type_id" string="Input Type" context="{'group_by': 'input_type_id'}" />
+                    <filter name="group_by_employee_ids" string="Employees" context="{'group_by': 'employee_ids'}" />
+                    <filter name="group_by_department_ids" string="Departments" context="{'group_by': 'department_ids'}" />
+                    <filter name="group_by_category_ids" string="Categories" context="{'group_by': 'category_ids'}" />
+                    <filter name="group_by_start_date" string="Start Date" context="{'group_by': 'start_date'}" />
+                    <filter name="group_by_end_date" string="End Date" context="{'group_by': 'end_date'}" />
+                    <filter name="group_by_state" string="Status" context="{'group_by': 'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+
+</odoo>

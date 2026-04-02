@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===== TREE VIEW - Add Photo Thumbnails ===== -->
+    <record id="view_attendance_tree_inherit_selfie" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.inherit.selfie</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+
+            <!-- Add photo thumbnails column after worked_hours -->
+            <field name="worked_hours" position="after">
+                <field name="check_in_image_small"
+                       string="Check-in Photo"
+                       widget="image"
+                       options="{'size': [50, 50]}"
+                       optional="show"/>
+                <field name="check_out_image_small"
+                       string="Check-out Photo"
+                       widget="image"
+                       options="{'size': [50, 50]}"
+                       optional="hide"/>
+            </field>
+
+        </field>
+    </record>
+
+    <!-- ===== FORM VIEW - Add Photo Display & Buttons ===== -->
+    <record id="view_attendance_form_inherit_selfie" model="ir.ui.view">
+        <field name="name">hr.attendance.form.inherit.selfie</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add section for selfie photos after overtime_hours -->
+            <field name="overtime_hours" position="after">
+
+                <!-- Separator -->
+                <separator string="Selfie Photos" colspan="2"/>
+
+                <!-- Photos Section -->
+                <group colspan="2" col="2">
+                    <!-- Check-in Photo -->
+                    <group string="Check-in Photo">
+                        <field name="check_in_image"
+                               widget="image"
+                               options="{'size': [200, 200]}"
+                               readonly="1"/>
+                        <button name="action_view_check_in_photo"
+                                type="object"
+                                string="View Fullscreen"
+                                class="btn-link"
+                                invisible="check_in_image == False"/>
+                    </group>
+
+                    <!-- Check-out Photo -->
+                    <group string="Check-out Photo">
+                        <field name="check_out_image"
+                               widget="image"
+                               options="{'size': [200, 200]}"
+                               readonly="1"
+                               invisible="check_out == False"/>
+                        <button name="action_view_check_out_photo"
+                                type="object"
+                                string="View Fullscreen"
+                                class="btn-link"
+                                invisible="check_out_image == False"/>
+                    </group>
+                </group>
+
+            </field>
+
+        </field>
+    </record>
+
+    <!-- ===== SEARCH/FILTER VIEW ===== -->
+    <record id="view_attendance_filter_inherit_selfie" model="ir.ui.view">
+        <field name="name">hr.attendance.filter.inherit.selfie</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+
+            <filter name="myattendances" position="after">
+                <separator/>
+                <!-- Filter untuk attendance dengan photo -->
+                <filter string="With Check-in Photo"
+                        name="filter_with_checkin_photo"
+                        domain="[('check_in_image', '!=', False)]"/>
+
+                <filter string="Without Check-in Photo"
+                        name="filter_without_checkin_photo"
+                        domain="[('check_in_image', '=', False)]"/>
+
+                <filter string="With Check-out Photo"
+                        name="filter_with_checkout_photo"
+                        domain="[('check_out_image', '!=', False)]"/>
+            </filter>
+
+        </field>
+    </record>
+
+</odoo>

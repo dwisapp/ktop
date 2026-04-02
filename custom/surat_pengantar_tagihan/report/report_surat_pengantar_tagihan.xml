@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_surat_pengantar_tagihan" model="ir.actions.report">
+        <field name="name">Surat Pengantar Tagihan</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">surat_pengantar_tagihan.report_surat_pengantar_tagihan_document</field>
+        <field name="report_file">surat_pengantar_tagihan.report_surat_pengantar_tagihan_document</field>
+        <field name="print_report_name">'Surat_Pengantar_Tagihan_%s' % (object.name or '').replace('/','-')</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+    </record>
+
+    <template id="report_surat_pengantar_tagihan_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <!-- ======================================================
+                             ✨ GLOBAL STYLING (Optimized Spacing for PDF)
+                             ====================================================== -->
+                        <style>
+                            body, div, p, span, table, td, th {
+                                margin: 0;
+                                padding: 0;
+                                line-height: 1.4;
+                                font-size: 12px;
+                            }
+
+                            .page {
+                                margin: 20px 40px;
+                            }
+
+                            .surat-header {
+                                text-align: center;
+                                margin-bottom: 15px;
+                                padding-bottom: 5px;
+                            }
+
+                            .surat-header .company-logo {
+                                margin: 0 auto 8px auto;
+                                display: block;
+                                max-width: 110px;
+                                height: auto;
+                            }
+
+                            .surat-header h3 {
+                                margin: 8px 0;
+                                font-size: 15px;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                            }
+
+                            .surat-info {
+                                margin-bottom: 15px;
+                                line-height: 1.3;
+                            }
+
+                            .surat-info div {
+                                margin-bottom: 4px;
+                            }
+
+                            .recipient-block {
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                line-height: 1.0;
+                            }
+
+                            .recipient-block p {
+                                margin: 0 0 0 20px;
+                                line-height: 1.2;
+                                padding: 0;
+                            }
+
+                            .recipient-block p span {
+                                line-height: 1.2;
+                                display: block;
+                            }
+
+                            .recipient-block .kepada-yth-content {
+                                white-space: pre-line;
+                                line-height: 1.2;
+                            }
+
+                            .recipient-block .kepada-yth-content br,
+                            .recipient-block br {
+                                content: "";
+                                margin: 0;
+                                padding: 0;
+                                line-height: 1.2;
+                                height: 0;
+                            }
+
+                            .recipient-block p:first-child {
+                                margin-left: 0;
+                            }
+
+                            .surat-body {
+                                text-align: justify;
+                                line-height: 1.5;
+                                margin-bottom: 10px;
+                            }
+
+                            .surat-body p {
+                                margin-bottom: 8px;
+                            }
+
+                            .surat-body .isi-surat-content,
+                            .surat-body .catatan-content {
+                                white-space: pre-line;
+                                line-height: 1.5;
+                            }
+
+                            .surat-body .isi-surat-content br,
+                            .surat-body .catatan-content br {
+                                content: "";
+                                margin: 0;
+                                padding: 0;
+                                line-height: 1.5;
+                                height: 0;
+                            }
+
+                            table.invoice-info {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 10px 0;
+                            }
+
+                            table.invoice-info td {
+                                padding: 5px 10px;
+                                vertical-align: top;
+                            }
+
+                            .label-col {
+                                width: 30%;
+                                font-weight: bold;
+                            }
+
+                            .surat-footer {
+                                margin-top: 30px;
+                            }
+
+                            .signature-section {
+                                float: right;
+                                text-align: center;
+                                width: 250px;
+                            }
+                        </style>
+
+                        <!-- ======================================================
+                             HEADER SURAT
+                             ====================================================== -->
+                        <div class="surat-header">
+                            <img t-if="o.company_id.logo"
+                                 class="company-logo"
+                                 t-att-src="image_data_uri(o.company_id.logo)"
+                                 alt="Company Logo"/>
+                            <H3> Permohonan Transfer </H3>
+                            <h3>
+                                
+                                <span t-if="o.title_surat" t-field="o.title_surat"/>
+                                <span t-else="">SURAT PENGANTAR TAGIHAN</span>
+                            </h3>
+                        </div>
+
+                        <!-- ======================================================
+                             INFO SURAT (Nomor, Tanggal, Perihal, Kepada Yth)
+                             ====================================================== -->
+                        <div class="surat-info">
+                            <div>
+                                <span style="display:inline-block; width:100px;">Nomor</span>:
+                                <span t-if="o.nomor_surat" t-field="o.nomor_surat"/>
+                                <span t-else="" t-field="o.name"/>
+                            </div>
+                            <div>
+                                <span style="display:inline-block; width:100px;">Tanggal</span>:
+                                <span t-if="o.tanggal_surat"
+                                      t-field="o.tanggal_surat"
+                                      t-options='{"format": "dd MMMM yyyy"}'/>
+                                <span t-else=""
+                                      t-field="o.invoice_date"
+                                      t-options='{"format": "dd MMMM yyyy"}'/>
+                            </div>
+                            <div>
+                                <span style="display:inline-block; width:100px;">Perihal</span>:
+                                <strong>
+                                    <span t-if="o.perihal" t-field="o.perihal"/>
+                                    <span t-else="">Penagihan Invoice</span>
+                                </strong>
+                            </div>
+                        </div>
+
+                        <!-- ======================================================
+                             KEPAADA YTH
+                             ====================================================== -->
+                        <div class="recipient-block">
+                            <p>Kepada Yth.</p>
+                            <t t-if="o.kepada_yth">
+                                <p><span t-field="o.kepada_yth" class="kepada-yth-content"/></p>
+                            </t>
+                            <t t-else="">
+                                <p><strong><span t-field="o.partner_id.name"/></strong></p>
+                                <p>
+                                    <span t-field="o.partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                                </p>
+                            </t>
+                        </div>
+
+                        <!-- ======================================================
+                             ISI SURAT / BODY
+                             ====================================================== -->
+                        <div class="surat-body">
+                            <p>Dengan hormat,</p>
+
+                            <t t-if="o.isi_surat">
+                                <p><span t-field="o.isi_surat" class="isi-surat-content"/></p>
+                            </t>
+                            <t t-else="">
+                                <p>Sehubungan dengan ditandatanganinya perjanjian kerja sama, bersama ini kami sampaikan tagihan pembayaran dengan rincian sebagai berikut:</p>
+                            </t>
+
+                            <t t-if="o.catatan_tambahan">
+                                <p><strong>Catatan:</strong></p>
+                                <p style="margin-left:20px;"><span t-field="o.catatan_tambahan" class="catatan-content"/></p>
+                            </t>
+
+                            <p style="margin-top: 10px;">
+                                Demikian surat pengantar ini kami sampaikan. Atas perhatian dan kerjasamanya, kami ucapkan terima kasih.
+                            </p>
+                        </div>
+
+                        <!-- ======================================================
+                             FOOTER / SIGNATURE
+                             ====================================================== -->
+                        <div class="surat-footer">
+                            <div class="signature-section">
+                                <p style="margin-bottom:6px;">Hormat kami,</p>
+                                <p><strong><span t-esc="o.company_id.name"/></strong></p>
+
+                                <div style="margin-top:60px;">
+                                    <t t-if="o.penanggung_jawab">
+                                        <strong><u><span t-field="o.penanggung_jawab.name"/></u></strong><br/>
+                                        <span t-if="o.jabatan" t-field="o.jabatan"/>
+                                        <span t-elif="o.penanggung_jawab.job_id" t-field="o.penanggung_jawab.job_id.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <strong><u>(_____________________)</u></strong><br/>
+                                        <span>Finance Manager</span>
+                                    </t>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form"  position="inside">
+                <app string="Payouts APi" data-string="Payouts APi" logo="/fjr_kasir_base/static/description/midtrans.jpg" name="fjr_kasir_base" groups="base.group_system"> 
+                    <block title="Midtrans API" name="Midtrans API">
+                        <setting string="Use Midtrans Payout" help="Enable to use Midtrans Payout" name="use_midtrans_payout" >
+                            <field name="use_midtrans_payout"/>
+                        </setting>
+                        
+                        <setting string="Midtrans API Url" help="Set Midtrans Payout API URL" name="midtrans_payout_url"  invisible="not use_midtrans_payout">
+                            <field name="midtrans_payout_url"/>
+                        </setting>
+                        <setting string="Midtrans IRIS API Key" help="Set Midtrans IRIS API Key" name="midtrans_payout_iris_api_key" invisible="not use_midtrans_payout">
+                            <div class="oe_row">
+                                <div class="col-8">
+                                    <field name="midtrans_payout_iris_api_key"/>
+                                </div>
+                                <button class="btn btn-primary col-4" name="create_list_of_bank_from_api" string="Get Midtrans Bank" type="object" />
+                            </div>
+                            
+                        </setting>
+                        <setting string="Midtrans IRIS Approval API Key" help="Set Midtrans IRIS Approval API Key" name="midtrans_payout_approval_api_key" invisible="not use_midtrans_payout">
+                            <field name="midtrans_payout_approval_api_key"/>
+                            
+                        </setting>
+                        
+                    </block >
+                    <block title="Xendit API" name="Xendit API">
+
+                         <setting string="Use Xendit Payout" help="Enable to use Xendit Payout" name="use_xendit_payout" >
+                            <field name="use_xendit_payout"/>
+                        </setting>
+                        <setting string="Xendit API Url" help="Set Xendit Payout API URL" name="xendit_payout_url"  invisible="not use_xendit_payout">
+                            <field name="xendit_payout_url"/>
+                        </setting>
+                        <setting string="Xendit Payout API Key" help="Set Xendit Payout API Key" name="xendit_payout_api_key" invisible="not use_xendit_payout">
+                            <field name="xendit_payout_api_key"/>
+                        </setting>
+                        <setting string="Xendit Payout Webhook Token" help="Set Xendit Payout Webhook Token" name="xendit_payout_webhook_token" invisible="not use_xendit_payout">
+                            <field name="xendit_payout_webhook_token"/>
+                        </setting>
+                    </block >
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <group name="accounting_entries" position="inside">
+                <field name="use_specific_invoice_sequence" />
+                <field name="invoice_sequence_id" invisible="not use_specific_invoice_sequence" required="use_specific_invoice_sequence" />
+            </group>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bank_ledger_wizard_user,bank.ledger.wizard.user,model_bank_ledger_wizard,account.group_account_user,1,1,1,1
+access_bank_ledger_wizard_manager,bank.ledger.wizard.manager,model_bank_ledger_wizard,account.group_account_manager,1,1,1,1
+access_bank_ledger_report_line_user,bank.ledger.report.line.user,model_bank_ledger_report_line,account.group_account_user,1,1,1,1
+access_bank_ledger_report_line_manager,bank.ledger.report.line.manager,model_bank_ledger_report_line,account.group_account_manager,1,1,1,1

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="base_auto_close" name="base_auto_close">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <t t-call-assets="web.assets_frontend"/>
+            </t>
+            <div class="base_auto_close" t-att-data-value="message"   t-att-data-callback="callback" />
+            <!-- <input name="message" id="message" type="hidden" t-att-value="message"/>    -->
+        </t> 
+         
+    </template>
+
+</odoo>

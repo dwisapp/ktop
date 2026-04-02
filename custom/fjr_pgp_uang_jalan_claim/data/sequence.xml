@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="seq_uang_jalan_driver_claim" model="ir.sequence">
+        <field name="name">Driver Claim</field>
+        <field name="code">uang.jalan.driver.claim</field>
+        <field name="prefix">DC/</field>
+        <field name="padding">5</field>
+    </record>
+
+</odoo>

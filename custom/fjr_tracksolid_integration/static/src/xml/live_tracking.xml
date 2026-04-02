@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="fjr_tracksolid_integration.LiveTrackingMap" owl="1">
+        <div class="o_action_manager">
+            <div class="h-100 d-flex flex-column">
+                <!-- Header Info -->
+                <div class="p-3 bg-white border-bottom d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="m-0"><t t-esc="state.vehicleName"/></h3>
+                        <span class="text-muted" t-if="!state.loading">
+                            Last Update: <t t-esc="state.lastUpdate"/> | Speed: <t t-esc="state.speed"/> km/h
+                        </span>
+                    </div>
+                    <div t-if="state.loading" class="text-warning">
+                        <i class="fa fa-spinner fa-spin"/> CONNECTING TO SATELLITE...
+                    </div>
+                    <div t-if="state.error" class="text-danger">
+                        <i class="fa fa-exclamation-triangle"/> <t t-esc="state.error"/>
+                    </div>
+                </div>
+                
+                <!-- Map Container -->
+                <div t-ref="mapContainer" class="flex-grow-1" style="width: 100%; min-height: 80vh; background: #e0e0e0;"></div>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+============================================================================
+Module: Surat Pengantar Tagihan
+View: account.move Form View (Inherit)
+============================================================================
+Deskripsi:
+  Extend form view Customer Invoice (account.move) untuk menambahkan:
+  1. Tombol "Cetak Surat Pengantar Tagihan" di header
+  2. Group field "Surat Pengantar Tagihan" di tab Other Info
+
+Fitur:
+  - Tombol print hanya muncul di Customer Invoice & Credit Note
+  - Access control: account.group_account_invoice
+  - Field dengan placeholder untuk memudahkan user
+  - Auto-fill jabatan dari employee yang dipilih
+
+Author: Krakatau IT
+Ref: FS_2.035
+============================================================================
+-->
+<odoo>
+    <!-- ====================================================================
+         INHERIT: Form View Customer Invoice
+         ==================================================================== -->
+    <record id="view_move_form_surat_pengantar" model="ir.ui.view">
+        <field name="name">account.move.form.surat.pengantar</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <!-- ============================================================
+                 HEADER: Tombol Cetak Surat Pengantar Tagihan
+                 ============================================================
+                 - Referensi ke action_report_surat_pengantar_tagihan
+                 - Hanya muncul untuk out_invoice & out_refund
+                 - Access: account.group_account_invoice
+            -->
+            <xpath expr="//header" position="inside">
+                <button name="%(surat_pengantar_tagihan.action_report_surat_pengantar_tagihan)d"
+                        string="Cetak Surat Pengantar Tagihan"
+                        type="action"
+                        class="btn-primary"
+                        groups="account.group_account_invoice"
+                        invisible="move_type not in ('out_invoice', 'out_refund')"/>
+            </xpath>
+
+            <!-- ============================================================
+                 TAB OTHER INFO: Group Surat Pengantar Tagihan
+                 ============================================================
+                 Layout:
+                 - Row 1: nomor_surat, tanggal_surat
+                 - Row 2: title_surat
+                 - Row 3: perihal, kepada_yth
+                 - Row 4: penanggung_jawab, jabatan (auto-fill)
+                 - Row 5: isi_surat, catatan_tambahan (full width)
+            -->
+            <xpath expr="//page[@name='other_info']" position="inside">
+                <group string="Surat Pengantar Tagihan" name="surat_pengantar_group">
+                    <!-- Column 1: Judul & Info Surat -->
+                    <group>
+                        <field name="nomor_surat"
+                               placeholder="Contoh: 001/SPT/FIN/I/2025"/>
+                        <field name="title_surat"
+                               placeholder="Contoh: SURAT PENGANTAR TAGIHAN"/>
+                        <field name="perihal"
+                               placeholder="Contoh: Tagihan Jasa Konsultan"/>
+                        <field name="kepada_yth"
+                               placeholder="Contoh: Direktur Keuangan PT. ABC"/>
+                    </group>
+
+                    <!-- Column 2: Tanggal & Penandatangan -->
+                    <group>
+                        <field name="tanggal_surat"/>
+                        <field name="penanggung_jawab"
+                               options="{'no_create': True, 'no_create_edit': True}"/>
+                        <field name="jabatan"
+                               placeholder="Auto-fill dari data karyawan"
+                               readonly="1"/>
+                    </group>
+
+                    <!-- Full Width: Isi Surat & Catatan -->
+                    <group colspan="2">
+                        <field name="isi_surat"
+                               placeholder="Contoh: Bersama ini kami lampirkan invoice untuk pembayaran..."
+                               widget="text"/>
+                        <field name="catatan_tambahan"
+                               placeholder="Informasi tambahan atau instruksi pembayaran"
+                               widget="text"/>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

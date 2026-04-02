@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Register assets for backend -->
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!-- JavaScript -->
+            <script type="text/javascript" src="/hr_attendance_selfie/static/src/js/attendance_camera_widget.js"/>
+
+            <!-- CSS -->
+            <link rel="stylesheet" type="text/css" href="/hr_attendance_selfie/static/src/css/attendance_camera.css"/>
+
+            <!-- XML Templates -->
+            <script type="text/xml" src="/hr_attendance_selfie/static/src/xml/camera_templates.xml"/>
+        </xpath>
+    </template>
+</odoo>

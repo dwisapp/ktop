@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_tracksolid_live_map" model="ir.actions.client">
+        <field name="name">Live Tracking</field>
+        <field name="tag">tracksolid_live_tracking_client_action</field>
+    </record>
+
+    <record id="action_tracksolid_history_map" model="ir.actions.client">
+        <field name="name">Playback History</field>
+        <field name="tag">tracksolid_history_map_client_action</field>
+    </record>
+
+    <record id="action_tracksolid_live_mileage" model="ir.actions.client">
+        <field name="name">Today's Mileage</field>
+        <field name="tag">tracksolid_live_mileage_client_action</field>
+    </record>
+
+    <record id="action_tracksolid_fleet_map" model="ir.actions.client">
+        <field name="name">Fleet Map</field>
+        <field name="tag">tracksolid_fleet_map_client_action</field>
+    </record>
+
+    <menuitem id="menu_tracksolid_fleet_map"
+              name="Fleet Map"
+              parent="fleet.menu_root"
+              action="action_tracksolid_fleet_map"
+              sequence="0"/>
+
+
+    <record id="fleet_vehicle_view_form_inherit_tracksolid" model="ir.ui.view">
+        <field name="name">fleet.vehicle.view.form.inherit.tracksolid</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(fjr_tracksolid_integration.action_tracksolid_live_map)d" string="Live Map" 
+                        type="action" class="oe_stat_button" icon="fa-map-marker"
+                        invisible="not tracksolid_imei"/>
+                <button name="%(fjr_tracksolid_integration.action_tracksolid_history_map)d" string="Playback" 
+                        type="action" class="oe_stat_button" icon="fa-history"
+                        invisible="not tracksolid_imei"/>
+                <button name="%(fjr_tracksolid_integration.action_tracksolid_live_mileage)d" string="Today's Mileage" 
+                        type="action" class="oe_stat_button" icon="fa-tachometer"
+                        invisible="not tracksolid_imei"/>
+                <button name="action_sync_from_tracksolid" string="Sync GPS" type="object" 
+                        invisible="not tracksolid_imei"/>
+            </xpath>
+            <xpath expr="//sheet/group" position="after">
+                <group string="Tracksolid GPS Info" name="tracksolid_info">
+                    <group>
+                        <field name="tracksolid_imei"/>
+                        <field name="tracksolid_device_name"/>
+                        <field name="last_gps_timestamp"/>
+                    </group>
+                    <group>
+                        <field name="last_gps_latitude"/>
+                        <field name="last_gps_longitude"/>
+                        <field name="last_gps_speed"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- List View update to show GPS status -->
+     <record id="fleet_vehicle_view_tree_inherit_tracksolid" model="ir.ui.view">
+        <field name="name">fleet.vehicle.view.tree.inherit.tracksolid</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="model_id" position="after">
+                <field name="tracksolid_device_name" optional="show"/>
+                <field name="gps_device_status" widget="badge" decoration-success="gps_device_status == 'online'" decoration-danger="gps_device_status == 'offline'" decoration-warning="gps_device_status == 'unknown'" optional="show"/>
+                <field name="last_gps_timestamp" optional="show"/>
+                <field name="last_gps_speed" optional="show"/>
+                <button name="action_sync_from_tracksolid" type="object" icon="fa-refresh" title="Sync GPS"/>
+            </field>
+        </field>
+    </record>
+</odoo>

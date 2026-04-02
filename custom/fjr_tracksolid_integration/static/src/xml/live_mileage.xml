@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="fjr_tracksolid_integration.LiveMileage" owl="1">
+       <div class="h-100 d-flex flex-column align-items-center justify-content-center bg-white">
+            <h2 class="text-primary mb-4"><i class="fa fa-tachometer"/> Today's Mileage</h2>
+            
+            <div t-if="state.loading" class="text-muted fa-3x">
+                <i class="fa fa-spinner fa-spin"/>
+            </div>
+            
+            <div t-if="state.error" class="text-danger">
+                <h3><i class="fa fa-warning"/> <t t-esc="state.error"/></h3>
+            </div>
+            
+            <div t-if="!state.loading and !state.error" class="text-center">
+                <div class="display-1 fw-bold text-dark">
+                    <t t-esc="state.mileage"/>
+                </div>
+                <div class="h3 text-muted">Kilometers</div>
+                
+                <button class="btn btn-lg btn-outline-primary mt-4" t-on-click="fetchMileage">
+                    <i class="fa fa-refresh"/> Refresh
+                </button>
+            </div>
+       </div>
+    </t>
+</templates>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ks_dn_advance.item_form_inherit" model="ir.ui.view">
+            <field name="name">ks_dashboard_ninja.ks_dashboard_ninja_item.form</field>
+            <field name="model">ks_dashboard_ninja.item</field>
+            <field name="inherit_id" ref="ks_dashboard_ninja.item_form_view"/>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div/field[@name='ks_model_id']" position="replace">
+                    <field context="{'current_id': id}" invisible="ks_dashboard_item_type in ['ks_to_do'] or model_bool == False or ks_data_calculation_type == 'query'" name="ks_model_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"/>
+                </xpath>
+                <xpath expr="//div/field[@name='filename']" position="before">
+                    <field invisible="1" name="ks_is_external_api"/>
+                    <label class="o_form_label" for="ks_url" invisible="ks_data_calculation_type == 'query' or ks_is_external_api == False" string="URL"/>
+                    <field invisible="ks_is_external_api == False or ks_data_calculation_type == 'query'" name="ks_url" required="ks_is_external_api == True"/>
+                    <label class="o_form_label" for="ks_api_header" invisible="ks_data_calculation_type == 'query' or ks_is_external_api == False" string="API header"/>
+                    <field invisible="ks_data_calculation_type == 'query' or ks_is_external_api == False" name="ks_api_header" required="ks_is_external_api == True"/>
+                </xpath>
+                <xpath expr="//page[@name='csv_data_type']" position="after">
+                    <page invisible="ks_is_external_api == False" name="data_type" string="API Data Type">
+                        <field name="ks_api_data_lines"><tree create="false" delete="false" editable="bottom">
+                                <field name="name"/>
+                                <field name="ttype"/>
+                                <field invisible="1" name="ks_dashboard_datatype_id"/>
+                            </tree></field>
+                        <button class="oe_highlight" invisible="ks_url == False or ks_api_data_lines == [] or ks_model_id != False" name="api_create_table" string="Create Table" type="object"/>
+                    </page>
+                </xpath>
+                <xpath expr="//div/field[@name='ks_company_id']" position="after">
+                    <field class="ks_data_calculation_widget" invisible="ks_dashboard_item_type == 'ks_tile' or ks_dashboard_item_type not in ['ks_bar_chart', 'ks_horizontalBar_chart', 'ks_line_chart', 'ks_area_chart', 'ks_flower_view', 'ks_map_view', 'ks_pie_chart', 'ks_doughnut_chart', 'ks_polarArea_chart', 'ks_list_view', 'ks_kpi', 'ks_radialBar_chart', 'ks_funnel_chart', 'ks_bullet_chart']" name="ks_data_calculation_type" required="ks_dashboard_item_type not in ['ks_kpi', 'ks_tile', 'ks_bar_chart', 'ks_horizontalBar_chart', 'ks_line_chart', 'ks_area_chart', 'ks_map_view', 'ks_flower_view', 'ks_pie_chart', 'ks_doughnut_chart', 'ks_polarArea_chart', 'ks_list_view', 'ks_radialBar_chart', 'ks_funnel_chart', 'ks_bullet_chart']" widget="radio"/>
+                </xpath>
+                <!--                 <xpath expr="//field[@name='ks_dashboard_item_type']" position="after">-->
+                <!--                    <field name="ks_hide_legend" context="{'current_id': id}"-->
+                <!--                                   attrs="{'invisible':[('ks_dashboard_item_type','in',['ks_tile', 'ks_kpi', 'ks_list_view'])]}"/>-->
+                <!--                </xpath>-->
+                <!--                <xpath expr="//field[@name='ks_dashboard_item_type']" position="before">-->
+                <!--                    <field name="ks_company_id"-->
+                <!--                           options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"/>-->
+                <!--                </xpath>-->
+                <xpath expr="//page[@name='data_sets']" position="attributes">
+                    <attribute name="invisible">ks_data_calculation_type != 'custom' or ks_dashboard_item_type not in ['ks_tile', 'ks_to_do', 'ks_kpi', 'ks_bar_chart', 'ks_line_chart', 'ks_area_chart', 'ks_flower_view', 'ks_map_view', 'ks_radialBar_chart', 'ks_funnel_chart', 'ks_bullet_chart', 'ks_horizontalBar_chart', 'ks_pie_chart', 'ks_doughnut_chart', 'ks_polarArea_chart', 'ks_list_view', 'ks_radar_view', 'ks_scatter_chart'] or ks_data_calculation_type == 'query'</attribute>
+                </xpath>
+                <xpath expr="//page[@name='data_model_2']" position="attributes">
+                    <attribute name="invisible">ks_data_calculation_type == 'query' or ks_dashboard_item_type != 'ks_kpi'</attribute>
+                </xpath>
+                <xpath expr="//page[@name='target_settings']" position="attributes">
+                    <attribute name="invisible">(ks_data_calculation_type == 'query' and ks_dashboard_item_type == 'ks_kpi') or ((ks_chart_groupby_type != 'date_type' and ks_dashboard_item_type != 'ks_kpi') or ((ks_dashboard_item_type not in ['ks_bar_chart', 'ks_horizontalBar_chart', 'ks_line_chart', 'ks_area_chart', 'ks_flower_view', 'ks_radialBar_chart', 'ks_funnel_chart', 'ks_bullet_chart', 'ks_list_view', 'ks_kpi'] or (ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'ungrouped')) or ((ks_dashboard_item_type == 'ks_kpi' and ks_model_id_2 != False) and ks_data_comparison in ['None', 'Ratio'])))</attribute>
+                </xpath>
+                <!--                <xpath expr="//page[@name='adv_conf']" position="attributes">-->
+                <!--                    <attribute name="attrs">-->
+                <!--                        {'invisible':['|', ('ks_data_calculation_type', '=', 'query'),('ks_dashboard_item_type','=','ks_to_do')]}-->
+                <!--</attribute>-->
+                <!--                </xpath>-->
+                <xpath expr="//field[@name='ks_chart_measure_field']" position="attributes">
+                    <attribute name="invisible">ks_chart_data_count_type == 'count' or ks_model_id == False or ks_dashboard_item_type == 'ks_list_view' or ks_dashboard_item_type == 'ks_scatter_chart' or ks_dashboard_item_type == 'ks_map_view' or ks_dashboard_item_type == 'ks_funnel_chart'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ks_list_view_type']" position="attributes">
+                    <attribute name="required">ks_dashboard_item_type == 'ks_list_view' and ks_data_calculation_type == 'custom'</attribute>
+                    <attribute name="invisible">ks_dashboard_item_type != 'ks_list_view'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ks_list_view_fields']" position="attributes">
+                    <attribute name="invisible">ks_dashboard_item_type != 'ks_list_view' or ks_list_view_type != 'ungrouped'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ks_list_view_group_fields']" position="attributes">
+                    <attribute name="required">ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'grouped' and ks_data_calculation_type == 'custom'</attribute>
+                    <attribute name="invisible">ks_dashboard_item_type != 'ks_list_view' or ks_list_view_type != 'grouped'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ks_chart_relation_groupby']" position="attributes">
+                    <attribute name="invisible">ks_dashboard_item_type == 'ks_scatter_chart' or ks_model_id == False or ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'ungrouped'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ks_chart_date_groupby']" position="attributes">
+                    <attribute name="required">ks_data_calculation_type == 'custom' and ks_chart_groupby_type == 'date_type' and ((ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'grouped') or ((ks_dashboard_item_type != 'ks_kpi' and ks_dashboard_item_type != 'ks_tile') and ks_dashboard_item_type != 'ks_list_view'))</attribute>
+                    <attribute name="invisible">(ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'ungrouped') or ks_chart_groupby_type != 'date_type'</attribute>
+                </xpath>
+                <xpath expr="//page[@name='data_sets']" position="after">
+                    <page invisible="ks_data_calculation_type == 'custom' or ks_dashboard_item_type == 'ks_tile'" name="ks_query" string="Query">
+                        <group name="External Database" string="External Database Credentials">
+                            <group>
+                                <field name="ks_is_external_db"/>
+                                <field invisible="ks_is_external_db == False" name="ks_external_db_type" required="ks_is_external_db == True"/>
+                                <field invisible="ks_is_external_db == False" name="ks_host" required="ks_is_external_db == True"/>
+                                <field invisible="ks_is_external_db == False" name="ks_db_name" required="ks_is_external_db == True" string="Database Name"/>
+                            </group>
+                            <group>
+                                <field invisible="ks_is_external_db == False" name="ks_db_user" required="ks_is_external_db == True"/>
+                                <field invisible="ks_is_external_db == False" name="ks_db_password" password="True" required="ks_is_external_db == True"/>
+                                <!--                                <label for="ks_port" attrs="{'invisible': [('ks_is_external_db','=', False)],'required':[('ks_is_external_db','=', True)]}"/>-->
+                                <!--                                <div class="o_row">-->
+                                <field invisible="ks_is_external_db == False" name="ks_port" required="ks_is_external_db == True"/>
+                                <!--                                <button name="ks_test_connection" class="oe_highlight" type="object" string='Test Connection' attrs="{'invisible': [('ks_is_external_db','=', False)]}"/>-->
+                                <!--                                </div>-->
+                                <!--                                <field name="ks_db_connection" invisible="1"/>-->
+                            </group>
+                        </group>
+                        <group name="Date Range" string="Date Range">
+                            <group>
+                                <field name="ks_is_date_ranges"/>
+                                <field invisible="ks_is_date_ranges == False" name="ks_query_start_date" required="ks_is_date_ranges == True" string="Start Date"/>
+                                <field invisible="ks_is_date_ranges == False" name="ks_query_end_date" required="ks_is_date_ranges == True" string="End Date"/>
+                            </group>
+                        </group>
+                        <group name="custom_query" string="Query">
+                            <field name="ks_custom_query" required="ks_dashboard_item_type != 'ks_tile' and ks_data_calculation_type == 'query'"/>
+                            <field invisible="1" name="ks_query_result"/>
+                            <field class="ks_y_label" invisible="ks_dashboard_item_type in ['ks_list_view', 'ks_kpi']" name="ks_xlabels" required="ks_dashboard_item_type != 'ks_list_view' and ks_dashboard_item_type != 'ks_kpi' and ks_dashboard_item_type != 'ks_tile' and ks_data_calculation_type == 'query'" string="X-Label" widget="ks_x_labels"/>
+                            <field invisible="ks_dashboard_item_type in ['ks_list_view', 'ks_kpi']" name="ks_ylabels" required="ks_dashboard_item_type != 'ks_list_view' and ks_dashboard_item_type != 'ks_kpi' and ks_dashboard_item_type != 'ks_tile' and ks_data_calculation_type == 'query'" string="Y-Axis" widget="ks_y_labels"/>
+                            <div colspan="2">
+                                <span invisible="ks_is_external_db == False" style="font-style: italic; color: #888888;">
+                                    ** Charts for external databases can be created only for columns that share the same
+                                    data-type as those in Odoo.
+                                </span>
+                            </div>
+                        </group>
+                    </page>
+                </xpath>
+                <!--                <xpath expr="//page[@name='display_settings']" position="attributes">-->
+                <!--                    <attribute name="attrs">-->
+                <!--                        {'invisible':['|',('ks_dashboard_item_type','=','ks_list_view'),('ks_dashboard_item_type','=','ks_map_view'}-->
+                <!--</attribute>-->
+                <!--                </xpath>-->
+                <xpath expr="//page[@name='display_settings']" position="inside">
+                    <group>
+                        <group>
+                            <field invisible="ks_dashboard_item_type != 'ks_list_view'" name="ks_list_view_layout" required="ks_dashboard_item_type == 'ks_list_view'"/>
+                        </group>
+                    </group>
+                </xpath>
+                <!--                <xpath expr="//page[@name='target_settings']" position="attributes">-->
+                <!--                    <attribute name="attrs">{'invisible':['|','&amp;',('ks_data_calculation_type','=','query'),('ks_dashboard_item_type','!=','ks_kpi'),'|','&amp;',('ks_chart_groupby_type','!=','date_type'),('ks_dashboard_item_type','!=','ks_kpi'),'|','|',('ks_dashboard_item_type','not-->
+                <!--                        in',['ks_bar_chart','ks_horizontalBar_chart','ks_line_chart','ks_area_chart','ks_list_view','ks_kpi']),'&amp;',('ks_dashboard_item_type','=','ks_list_view'),('ks_list_view_type','=','ungrouped'),'&amp;','&amp;',('ks_dashboard_item_type','=','ks_kpi'),('ks_model_id_2','!=',False),('ks_data_comparison','in',['None','Ratio'])]}-->
+                <!--</attribute>-->
+                <!--                </xpath>--></field>
+        </record>
+        <record id="ks_dn_advance.item_quick_edit_form_inherit" model="ir.ui.view">
+            <field name="name">ks_dashboard_ninja.ks_dashboard_item_quick_edit_view</field>
+            <field name="model">ks_dashboard_ninja.item</field>
+            <field name="inherit_id" ref="ks_dashboard_ninja.item_quick_edit_form_view"/>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ks_model_id']" position="replace">
+                    <field invisible="1" name="ks_data_calculation_type"/>
+                    <field context="{'current_id': id}" invisible="ks_dashboard_item_type in ['ks_to_do'] or ks_data_calculation_type == 'query'" name="ks_model_id" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"/>
+                </xpath>
+                <xpath expr="//form/group[@name='chart_settings']" position="replace">
+                    <group class="ks_qe_form_view_group" invisible="ks_data_calculation_type == 'query' or ks_dashboard_item_type == 'ks_tile' or ks_dashboard_item_type == 'ks_kpi'" name="chart_settings">
+                        <field invisible="ks_model_id == False or ks_dashboard_item_type == 'ks_tile' or ks_dashboard_item_type == 'ks_list_view'" name="ks_chart_data_count_type" required="ks_data_calculation_type == 'custom' and ks_dashboard_item_type != 'ks_tile' and ks_dashboard_item_type != 'ks_list_view'"/>
+                        <field invisible="ks_data_calculation_type == 'query' or ks_dashboard_item_type != 'ks_list_view'" name="ks_list_view_type" required="ks_data_calculation_type == 'custom' and ks_dashboard_item_type == 'ks_list_view'"/>
+                        <field invisible="ks_chart_data_count_type == 'count' or ks_model_id == False or ks_dashboard_item_type == 'ks_list_view' or ks_dashboard_item_type == 'ks_scatter_chart' or ks_dashboard_item_type == 'ks_funnel_chart'" name="ks_chart_measure_field" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" required="ks_data_calculation_type == 'custom' and ks_dashboard_item_type != 'ks_scatter_chart' and ks_dashboard_item_type != 'ks_to_do' and ks_dashboard_item_type != 'ks_tile' and ks_dashboard_item_type != 'ks_kpi' and ks_dashboard_item_type != 'ks_list_view' and ks_chart_data_count_type != 'count'" string="Measures" widget="many2many_tags"/>
+                        <field invisible="ks_chart_data_count_type == 'count' or ks_model_id == False or ks_dashboard_item_type == 'ks_list_view' or ks_dashboard_item_type != 'ks_bar_chart'" name="ks_chart_measure_field_2" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" string="Line Measure" widget="many2many_tags"/>
+                        <field invisible="ks_data_calculation_type == 'query' or ks_dashboard_item_type != 'ks_list_view' or ks_list_view_type != 'ungrouped'" name="ks_list_view_fields" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" required="ks_data_calculation_type == 'custom' and ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'ungrouped'" string="Fields to show in list" widget="many2many_tags"/>
+                        <field invisible="ks_dashboard_item_type != 'ks_list_view' or ks_list_view_type != 'grouped'" name="ks_list_view_group_fields" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" required="ks_data_calculation_type == 'custom' and ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'grouped'" string="Fields to show in list" widget="many2many_tags"/>
+                        <field invisible="1" name="ks_chart_groupby_type"/>
+                        <field invisible="ks_dashboard_item_type == 'ks_scatter_chart' or ks_model_id == False or ks_dashboard_item_type == 'ks_list_view' and ks_list_view_type == 'ungrouped'" name="ks_chart_relation_groupby" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" required="ks_data_calculation_type == 'custom' and ks_dashboard_item_type != 'ks_scatter_chart' and ks_dashboard_item_type != 'ks_to_do' and ks_dashboard_item_type != 'ks_tile' and ks_dashboard_item_type != 'ks_kpi' and (ks_dashboard_item_type != 'ks_list_view' or ks_list_view_type == 'grouped')" string="Group By"/>
+                        <field invisible="ks_chart_groupby_type != 'date_type'" name="ks_chart_date_groupby" required="ks_data_calculation_type == 'custom' and ks_dashboard_item_type != 'ks_tile' and ks_chart_groupby_type == 'date_type'" string="Group By Date"/>
+                        <field invisible="ks_dashboard_item_type in ['ks_kpi', 'ks_to_do', 'ks_tile', 'ks_bar_chart', 'ks_horizontalBar_chart', 'ks_line_chart', 'ks_area_chart', 'ks_pie_chart', 'ks_doughnut_chart', 'ks_polarArea_chart', 'ks_map_view', 'ks_funnel_chart', 'ks_bullet_chart', 'ks_list_view', 'ks_radar_view', 'ks_flower_view', 'ks_radialBar_chart']" name="ks_scatter_measure_x_id"/>
+                        <field invisible="ks_dashboard_item_type in ['ks_kpi', 'ks_to_do', 'ks_tile', 'ks_bar_chart', 'ks_horizontalBar_chart', 'ks_line_chart', 'ks_area_chart', 'ks_pie_chart', 'ks_doughnut_chart', 'ks_polarArea_chart', 'ks_map_view', 'ks_funnel_chart', 'ks_bullet_chart', 'ks_list_view', 'ks_radar_view', 'ks_flower_view', 'ks_radialBar_chart']" name="ks_is_scatter_group"/>
+                        <field invisible="ks_dashboard_item_type in ['ks_kpi', 'ks_to_do', 'ks_tile', 'ks_bar_chart', 'ks_horizontalBar_chart', 'ks_line_chart', 'ks_area_chart', 'ks_pie_chart', 'ks_doughnut_chart', 'ks_polarArea_chart', 'ks_map_view', 'ks_funnel_chart', 'ks_bullet_chart', 'ks_list_view', 'ks_radar_view', 'ks_flower_view', 'ks_radialBar_chart'] or ks_is_scatter_group == False" name="ks_scatter_measure_y_id"/>
+                    </group>
+                </xpath>
+                <xpath expr="//group[@name='chart_settings']" position="after">
+                    <group class="ks_qe_form_view_group" invisible="ks_data_calculation_type == 'custom' or (ks_dashboard_item_type == 'ks_tile' or ks_dashboard_item_type == 'ks_kpi')" name="custom_query">
+                        <field name="ks_custom_query" required="ks_dashboard_item_type != 'ks_kpi' and ks_dashboard_item_type != 'ks_tile' and ks_data_calculation_type == 'query'"/>
+                        <field invisible="1" name="ks_query_result"/>
+                        <field invisible="ks_dashboard_item_type == 'ks_list_view'" name="ks_xlabels" required="ks_dashboard_item_type != 'ks_list_view' and ks_dashboard_item_type != 'ks_kpi' and ks_dashboard_item_type != 'ks_tile' and ks_data_calculation_type == 'query'" widget="ks_x_labels"/>
+                    </group>
+                </xpath></field>
+        </record>
+        <record id="ks_dn_advance.board_tree_inherit" model="ir.ui.view">
+            <field name="name">ks_dashboard_item_quick_edit_view</field>
+            <field name="model">ks_dashboard_ninja.board</field>
+            <field name="inherit_id" ref="ks_dashboard_ninja.board_tree"/>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ks_dashboard_end_date']" position="after">
+                    <field name="ks_croessel_speed" required="1"/>
+                </xpath></field>
+        </record>
+    </data>
+</odoo>

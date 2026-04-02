@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bank Ledger Wizard Form View -->
+    <record id="view_bank_ledger_wizard_form" model="ir.ui.view">
+        <field name="name">bank.ledger.wizard.form</field>
+        <field name="model">bank.ledger.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bank Ledger Report">
+                <group>
+                    <group>
+                        <field name="journal_id" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="date_from"/>
+                    </group>
+                    <group>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_view_report" string="View Report" type="object" class="btn-primary"/>
+                    <button name="action_print_report" string="Print PDF" type="object" class="btn-secondary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Bank Ledger Wizard Action -->
+    <record id="action_bank_ledger_wizard" model="ir.actions.act_window">
+        <field name="name">Bank Ledger Report</field>
+        <field name="res_model">bank.ledger.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_bank_ledger_wizard"/>
+    </record>
+</odoo>

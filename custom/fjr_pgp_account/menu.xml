@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="account_term_condition_menu"
+        action="account_term_condition_action"
+        parent="account.account_invoicing_menu"
+        sequence="10"/>
+
+    <!-- <menuitem id="menu_action_move_in_advance_payment_invoice_type" 
+        action="action_move_in_advance_payment_invoice_type"
+        parent="account.menu_finance_payables"
+        sequence="3"/> -->
+
+</odoo>

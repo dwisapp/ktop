@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_payslip_inherit" inherit_id="hr_payroll.report_payslip">
+        <div class="page" position="replace">
+            <div class="page">
+                <style>
+                    .no_padding tr td {
+                        padding: 0px 2px;
+                    }
+                </style>
+                <h2 id="payslip_name"><span t-field="o.name">August 2023 Payslip</span></h2>
+                <t t-set="is_invalid" t-value="o._is_invalid()"/>
+                <div t-if="is_invalid">
+                    <strong id="invalid_warning"><span t-out="is_invalid">This payslip is not validated. This is not a legal document.</span></strong>
+                </div>
+                <div t-else="">
+                    <div class="oe_structure"></div>
+                </div>
+                
+                <table class="table table-borderless no_padding">
+                    <tr>
+                        <td>
+                            Periode
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <span t-field="o.date_from"/> - <span t-field="o.date_to"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nama Karyawan
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <span t-field="o.employee_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Jabatan
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <span t-field="o.employee_id.job_title"/>
+                        </td>
+                    </tr>
+                </table>
+                <hr style="border-top: 2px solid #000; margin:0px;" />
+
+                <t t-if="o.use_delivery_note">
+                    <table class="table table-borderless no_padding">
+                        <tr>
+                             <td colspan="4">
+                                <strong>Komisi Per Delivery</strong>
+                            </td>
+                        </tr>
+
+                        <tr t-if="o.payment_per_delivery_ids" class="fw-bold">
+                            
+                            <td>
+                                <span>Ritase</span>
+                            </td>
+                            <td>
+                                <span>Kuantitas</span>
+                            </td>
+                            <td class="text-end">
+                                <span>Jumlah / Ritase</span>
+                            </td>
+                            <td class="text-end">
+                                <span>Total</span>
+                            </td>
+                        </tr>
+                       
+                        <t t-foreach="o.payment_per_delivery_ids" t-as="line">
+                            <tr>
+                                
+                                <td>
+                                    <span t-field="line.payment_per_delivery_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.quantity"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="line.amount"/>
+                                </td>
+                                
+                                <td class="text-end">
+                                    <span t-field="line.amount_total"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td>
+                                <strong>Total Komisi Per Delivery</strong>
+                            </td>
+                            
+                            <td class="text-end" colspan="4">
+                                <strong><span t-options="{'widget':'monetary','display_currency':o.company_id.currency_id}" t-esc="sum(o.payment_per_delivery_ids.mapped('amount_total'))"/></strong>
+                            </td>
+                        </tr>
+                    </table> 
+                    <hr style="border-top: 2px solid #000;margin:0px; " />
+                </t>
+
+
+                <t t-foreach="o._get_salary_rule_in_print_payslip().items()" t-as="line_by_categ">
+                    <t t-set="categ" t-value="line_by_categ[0]"/>
+                    <t t-set="lines" t-value="line_by_categ[1]"/>
+                    <table class="table table-borderless no_padding">
+                        <tr>
+                            <td colspan="2">
+                                <strong><span t-field="categ.name"/></strong>
+                            </td>
+                        </tr>
+                       
+                        <t t-foreach="lines" t-as="line">
+                            <tr t-if="line.total">
+                                
+                                <td>
+                                    <span t-field="line.name"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="line.total"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td>
+                                <strong>Total <span t-field="categ.name"/></strong>
+                            </td>
+                            <td class="text-end">
+                                <strong><span t-options="{'widget':'monetary','display_currency':o.company_id.currency_id}" t-esc="sum([x.total for x in lines])"/></strong>
+                            </td>
+                        </tr>
+                    </table> 
+                    <hr style="border-top: 2px solid #000;margin:0px; " />
+
+                
+                </t>
+                <div class="oe_structure"></div>
+
+                <table class="table table-borderless no_padding mt-3 h4">
+                    <tr>
+                        <td>
+                            <strong>Total Yang Diterima</strong>
+                        </td>
+                        <td class="text-end">
+                            <strong><span  t-field="o.net_wage"/> </strong>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </template>
+
+</odoo>

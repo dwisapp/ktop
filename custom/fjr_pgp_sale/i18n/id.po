@@ -1,0 +1,617 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fjr_pgp_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-20 05:34+0000\n"
+"PO-Revision-Date: 2024-11-20 05:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_sale_order_line__qty_delivered_method
+msgid ""
+"According to product configuration, the delivered quantity can be automatically computed by mechanism:\n"
+"  - Manual: the quantity is set manually on the line\n"
+"  - Analytic From expenses: the quantity is the quantity sum from posted expenses\n"
+"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
+"  - Stock Moves: the quantity comes from confirmed pickings\n"
+msgstr "Menurut konfigurasi produk, kuantitas yang dikirim dapat dihitung secara otomatis melalui mekanisme:\n - Manual: kuantitas diatur secara manual di baris\n - Analitik Dari pengeluaran: kuantitas adalah jumlah kuantitas dari pengeluaran yang diposting\n - Timesheet "
+"Menurut konfigurasi produk, kuantitas yang dikirim dapat secara otomatis dihitung dengan mekanisme:\n"
+"  - Manual: kuantitas ditetapkan secara manual pada baris\n"
+"  - Analytic From expenses: kuantitas adalah jumlah kuantitas dari pengeluaran yang dipost\n"
+"  - Timesheet: kuantitas adalah jumlah jam yang dicatat pada task terkait baris sale ini\n"
+"  - Stock Moves: kuantitas datang dari picking yang dikonfirmasi\n"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_needaction
+msgid "Action Needed"
+msgstr "Dibutuhkan Tindakan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_ids
+msgid "Activities"
+msgstr "Kegiatan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekorasi Pengecualian Aktivitas"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_state
+msgid "Activity State"
+msgstr "Status Aktivitas"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikon Jenis Aktivitas"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__transport_mode__air
+#, python-format
+msgid "Air"
+msgstr "Udara"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_attachment_count
+msgid "Attachment Count"
+msgstr "Jumlah Lampiran"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_product_product__delivery_note_ok
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_product_template__delivery_note_ok
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order_line__delivery_note_ok
+msgid "Can be Delivery Note"
+msgstr "Dapat Menggunakan Catatan Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Cancel"
+msgstr "Batalkan"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__state__cancel
+#, python-format
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__product_uom_category_id
+msgid "Category"
+msgstr "Kategori"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.actions.act_window,help:fjr_pgp_sale.delivery_note_action
+msgid "Click to create a new delivery note."
+msgstr "Klik untuk membuat nota pengiriman baru."
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__state__complete
+#, python-format
+msgid "Complete"
+msgstr "Selesai"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+#. module: fjr_pgp_sale
+#: model:ir.model,name:fjr_pgp_sale.model_res_partner
+msgid "Contact"
+msgstr "Kontak"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr "Konversi antar Satuan Ukuran hanya dapat terjadi jika keduanya termasuk dalam kategori yang sama. "
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.sale_order_view_form_inherit
+msgid "Create Delivery Note"
+msgstr "Buat Catatan Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__create_uid
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__create_date
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__partner_id
+msgid "Customer"
+msgstr "Pelanggan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__customer_order_ref
+msgid "Customer Order Ref"
+msgstr "Referensi Pesanan Pelanggan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order_line__delivery_date
+msgid "Delivery Date"
+msgstr "Tanggal Kirim"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__delivery_finish_date
+msgid "Delivery Finish Date"
+msgstr "Tanggal Selesai Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__name
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_search
+msgid "Delivery No."
+msgstr "Nomor Pengiriman."
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/sale_order.py:0
+#: model:ir.actions.act_window,name:fjr_pgp_sale.delivery_note_action
+#: model:ir.model,name:fjr_pgp_sale.model_delivery_note
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__delivery_note_id
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__sale_order_line__qty_delivered_method__delivery_note
+#: model:ir.ui.menu,name:fjr_pgp_sale.delivery_note_menu
+#, python-format
+msgid "Delivery Note"
+msgstr "Catatan Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order__delivery_note_count
+msgid "Delivery Note Count"
+msgstr "Jumlah Catatan Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model:ir.model,name:fjr_pgp_sale.model_delivery_note_line
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__line_ids
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order_line__delivery_note_line_ids
+msgid "Delivery Note Line"
+msgstr "Jalur Catatan Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.sale_order_view_form_inherit
+msgid "Delivery Notes"
+msgstr "Catatan Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__delivery_start_date
+msgid "Delivery Start Date"
+msgstr "Tanggal Mulai Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Delivery To"
+msgstr "Pengiriman Ke"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order__display_button_create_delivery_note
+msgid "Display Delivery Note Button"
+msgstr "Tampilkan Tombol Catatan Pengiriman"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__display_name
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__display_name
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__distance
+msgid "Distance (km)"
+msgstr "Jarak (km)"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__state__draft
+#, python-format
+msgid "Draft"
+msgstr "Draf"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__driver_id
+msgid "Driver"
+msgstr "Sopir"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__employee_id
+msgid "Employee"
+msgstr "Karyawan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__employee_barcode
+msgid "Employee ID"
+msgstr "ID Karyawan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_follower_ids
+msgid "Followers"
+msgstr "Pengikut"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pengikut (Mitra)"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ikon font mengagumkan, mis. "
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__has_message
+msgid "Has Message"
+msgstr "Memiliki Pesan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__id
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__id
+msgid "ID"
+msgstr ""
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__employee_barcode
+msgid "ID used for employee identification."
+msgstr "ID yang digunakan untuk identifikasi karyawan."
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_exception_icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikon untuk menunjukkan aktivitas pengecualian."
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__message_has_error
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Internal Notes"
+msgstr "Catatan Internal"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_is_follower
+msgid "Is Follower"
+msgstr "Adalah Pengikut"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_res_partner__is_transporter
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_res_users__is_transporter
+msgid "Is Transporter"
+msgstr "Apakah Pengangkut"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Items"
+msgstr "Item"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__jenis_barang
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order__jenis_barang
+msgid "Jenis Barang"
+msgstr ""
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__write_uid
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__write_date
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__write_date
+msgid "Last Updated on"
+msgstr "Terakhir Diperbarui pada"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_has_error
+msgid "Message Delivery error"
+msgstr "Kesalahan Pengiriman Pesan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_ids
+msgid "Messages"
+msgstr "Pesan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order_line__qty_delivered_method
+msgid "Method to update delivered qty"
+msgstr "Metode untuk mengupdate kuantitas yang dikirim"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Batas Waktu Aktivitas Saya"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#, python-format
+msgid "New"
+msgstr "Baru"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Batas Waktu Kegiatan Selanjutnya"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_summary
+msgid "Next Activity Summary"
+msgstr "Ringkasan Aktivitas Berikutnya"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_type_id
+msgid "Next Activity Type"
+msgstr "Jenis Aktivitas Berikutnya"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__notes
+msgid "Notes"
+msgstr "Catatan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Jumlah Tindakan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_has_error_counter
+msgid "Number of errors"
+msgstr "Jumlah kesalahan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Jumlah pesan yang memerlukan tindakan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Jumlah pesan dengan kesalahan pengiriman"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.sale_order_view_form_inherit
+msgid "Order Kerja"
+msgstr "Pesanan Kerja"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__transport_mode__other
+#, python-format
+msgid "Other"
+msgstr "Lainnya"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Other Info"
+msgstr "Informasi Lainnya"
+
+#. module: fjr_pgp_sale
+#: model:ir.model,name:fjr_pgp_sale.model_product_template
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__product_id
+msgid "Product"
+msgstr "Produk"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__product_uom_qty
+msgid "Quantity"
+msgstr "Kuantitas"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__transport_mode__rail
+#, python-format
+msgid "Rail"
+msgstr "Rel"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__rating_ids
+msgid "Ratings"
+msgstr "Peringkat"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Reset to Draft"
+msgstr "Reset ke Draf"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__activity_user_id
+msgid "Responsible User"
+msgstr "Pengguna yang Bertanggung Jawab"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__transport_mode__road
+#, python-format
+msgid "Road"
+msgstr "Jalan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Kesalahan Pengiriman SMS"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__sale_order_count
+msgid "Sale Order Count"
+msgstr "Jumlah Pesanan Penjualan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__sale_line_id
+msgid "Sale Order Line"
+msgstr "Jalur Pemesanan Penjualan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model,name:fjr_pgp_sale.model_sale_order
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Sales Order"
+msgstr "Order Penjualan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model,name:fjr_pgp_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Baris Pesanan Penjualan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__sequence_id
+msgid "Sequence"
+msgstr "Urutan"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__transport_mode__ship
+#, python-format
+msgid "Ship"
+msgstr "Kapal"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__origin
+msgid "Source Document"
+msgstr "Dokumen Sumber"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__state
+msgid "Status"
+msgstr "Statusnya"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Status berdasarkan aktivitas\nTerlambat: Batas waktu telah berlalu\nHari ini: Tanggal aktivitas adalah hari ini\nRencana: Aktivitas selanjutnya."
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__price_subtotal
+msgid "Subtotal"
+msgstr ""
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__tempat_muat
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order__tempat_muat
+msgid "Tempat Muat"
+msgstr ""
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Timesheet Section"
+msgstr "Bagian Daftar Waktu"
+
+#. module: fjr_pgp_sale
+#. odoo-python
+#: code:addons/fjr_pgp_sale/models/delivery_note.py:0
+#: model:ir.model.fields.selection,name:fjr_pgp_sale.selection__delivery_note__state__to_bill
+#, python-format
+msgid "To Bill"
+msgstr "Siap Difakturkan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__transport_mode
+msgid "Transport Mode"
+msgstr "Jenis Transportasi"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__transport_receipt_date
+msgid "Transport Receipt Date"
+msgstr "Tanggal Penerimaan Angkutan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__transport_receipt_no
+msgid "Transport Receipt No."
+msgstr "Tanda Terima Angkutan No."
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__transporter_id
+msgid "Transporter"
+msgstr "Pengangkut"
+
+#. module: fjr_pgp_sale
+#: model_terms:ir.ui.view,arch_db:fjr_pgp_sale.delivery_note_view_form
+msgid "Transporter Info"
+msgstr "Info Pengangkut"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__tujuan_bongkar
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_sale_order__tujuan_bongkar
+msgid "Tujuan Bongkar"
+msgstr ""
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Jenis aktivitas pengecualian yang tercatat."
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__price_unit
+msgid "Unit Price"
+msgstr "Harga Satuan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__unit_type
+msgid "Unit Type"
+msgstr "Tipe Satuan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note_line__product_uom
+msgid "Unit of Measure"
+msgstr "Satuan Ukuran"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__fleet_id
+msgid "Vehicle"
+msgstr "Kendaraan"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,field_description:fjr_pgp_sale.field_delivery_note__website_message_ids
+msgid "Website Messages"
+msgstr "Pesan Situs Web"
+
+#. module: fjr_pgp_sale
+#: model:ir.model.fields,help:fjr_pgp_sale.field_delivery_note__website_message_ids
+msgid "Website communication history"
+msgstr "Riwayat komunikasi situs web"
+

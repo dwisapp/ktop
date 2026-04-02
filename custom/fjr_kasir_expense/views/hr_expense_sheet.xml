@@ -1,0 +1,40 @@
+<odoo>
+  <record id="hr_expense_sheet_view_form_inherit" model="ir.ui.view">
+    <field name="name">hr.expense.sheet.view.form.inherit</field>
+    <field name="model">hr.expense.sheet</field>
+    <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+    <field name="arch" type="xml">
+      <field name="name" position="attributes">
+        <attribute name="readonly">1</attribute>
+      </field>
+
+      <field name="employee_id" position="before">
+        <field name="description" />
+      </field>
+
+      <button name="action_sheet_move_create" position="attributes">
+        <attribute name="invisible">state != 'approved_accounting_manager'</attribute>
+      </button>
+      <button name="action_open_account_moves" position="attributes">
+        <attribute name="invisible">state not in ['post', 'done','in_payment'] or nb_account_move == 0</attribute>
+      
+      </button>
+      <button name="action_approve_expense_sheets" position="after">
+        <button name="action_approved_accounting_manager" groups="fjr_kasir_expense.group_hr_expense_accounting_user" invisible="state != 'approve'" string="Approve" type="object" class="oe_highlight"  />
+        <button name="action_approved_accounting_manager" groups="fjr_kasir_expense.group_hr_expense_accounting_manager" invisible="state != 'approved_accounting'" string="Approve" type="object" class="oe_highlight"  />
+        <button name="request_approval_accounting" invisible="state != 'approve'" string="Request Approval Accounting" type="object" class="oe_highlight"  />
+        <button name="request_approval_accounting_manager" invisible="state != 'approved_accounting'" string="Request Approval Accounting Manager" type="object" class="oe_highlight"  />
+        <field name="midtrans_status" invisible="1" />
+        <button name="action_transfer_payment" invisible="state != 'in_payment' or midtrans_status" string="Transfer Payment" type="object" class="oe_highlight"  confirm="Are you sure want to transfer payment?" />
+      </button>
+      <button name="action_refuse_expense_sheets"  position="attributes">
+        <attribute name="invisible">state not in ('submit', 'approve', 'approved_accounting', 'approved_accounting_manager')</attribute>
+      </button>
+
+      <field name="user_id" position="after">
+        <field name="accounting_id"  readonly="state not in ('draft', 'submit','approve')" options="{'no_create':True, 'no_open': True}" />
+        <field name="accounting_manager_id"  readonly="state not in ('draft', 'submit', 'approved_accounting','approve')" options="{'no_create':True, 'no_open': True}" />
+      </field>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_approval_view_tree" model="ir.ui.view">
+        <field name="name">purchase.order.approval.view.tree</field>
+        <field name="model">purchase.order.approval</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="company_id" column_invisible="1"/>
+                <field name="name"/>
+                <field name="group_ids" widget="many2many_tags"/>
+                <field name="user_ids" widget="many2many_tags"/>
+                <field name="min_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="purchase_order_approval_view_form" model="ir.ui.view">
+        <field name="name">purchase.order.approval.view.form</field>
+        <field name="model">purchase.order.approval</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                    
+                        <field name="name"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="group_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="user_ids" required="1" widget="many2many_tags"  options="{'no_create': True}"/>
+                        <field name="min_amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

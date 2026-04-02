@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_change_sale_order_view_form" model="ir.ui.view">
+        <field name="name">wizard.change.sale.order.view.form</field>
+        <field name="model">wizard.change.sale.order</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <field name="delivery_note_ids" invisible="1"/>
+                    <field name="sale_order_id" options="{'no_create':True}" domain="[('state','=','sale')]"/>   
+                </group>
+                <footer>
+                    <button name="action_change" string="Change" class="btn-primary" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

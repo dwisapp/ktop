@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_purchaseorder_inherit" inherit_id="purchase.report_purchaseorder_document">
+       <t t-call="web.external_layout" position="replace">
+            <t t-call="web.basic_layout">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-5">
+                        
+                            <small  class="text-small" t-esc="datetime.datetime.now().strftime('%d/%m/%Y, %H:%M')"/>
+                        </div>
+                        <div class="col-7">
+                            <small  class="text-small">
+                                <span t-field="o.partner_id" />
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;"/>
+                        </div>
+                        <div class="col-8">
+                           <p class="mt-0 mb-0 font-weight-bold">
+                            <strong>PT. PRATAMA GALUH PERKASA</strong>
+                           </p>
+                           <p class="mt-0 mb-0 font-weight-bold">
+                           <strong>
+                           
+                            INTERNATIONAL FREIGHT FORWARDER, TRUCKING, CRANE, FORKLIFT
+                           </strong>
+                           </p>
+                           <p class="mt-0 mb-0">
+                            <small>
+                                Kantor : Jln. Mayjend Sutoyo No. 18 Tegalwangi Rawaarum - Cilegon
+                            </small>
+                            
+                           </p>
+                           <p class="mt-0 mb-0">
+                            <small>
+                                Tlp. 0254-570700, 570678 Fax 0254-571524
+                            </small>
+                           </p>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="watermark" t-if="report_type == 'pdf'">
+                <!-- Watermark -->
+                    <img t-if="o.company_id.draft_watermark and o.state not in ('done','purchase')" t-att-src="image_data_uri(o.company_id.draft_watermark)" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.2;"/>
+                    <img t-if="o.company_id.approved_watermark and o.state in ('done','purchase')" t-att-src="image_data_uri(o.company_id.approved_watermark)" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.2;"/>
+
+                </div>
+                <div class="page">
+
+                    <style>
+                        .table-borderless td{
+                            padding: 0 2px;
+                        }
+                        .table-items  td, .table-items  th{
+                            border : 1px solid black;
+                            padding :3px;
+                        }
+
+                        .table-bordered td{
+                            border : 1px solid black;
+                        }
+                       
+
+                        .table-items th{
+                            background-color: #f0f0f0;
+                        }
+                        
+                    </style>
+                   <div class="row">
+                    <div class="col-6">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>
+                                    TO
+                                </td>
+                                <td width="2%">
+                                    :
+                                </td>
+                                <td width="80%">
+                                    <span t-field="o.partner_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    U/p
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <!-- <span t-field="o.partner_id"/> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Telp./Fax
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <span t-field="o.partner_id.phone"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>
+                                    No. PO
+                                </td>
+                                <td width="2%">
+                                    :
+                                </td>
+                                <td width="60%">
+                                    <span t-field="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Date
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <span t-field="o.date_order"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    No. Ref/Quotation
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <span t-field="o.partner_ref"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Terms Pembayaran
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <span t-field="o.payment_term_id"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                   </div>
+                   <p>
+                    Please supply the following items:
+                   </p>
+                   <table class="table table-borderless table-items" style="border:none !important;">
+                    <thead>
+                        <tr>
+                            <th>
+                                No.
+                            </th>
+                            <th>
+                                Qty
+                            </th>
+                            <th>
+                                UOM
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Unit Cost
+                            </th>
+                            <th>
+                                Disc
+                            </th>
+                            <th>
+                                Tax
+                            </th>
+                            <th>
+                                Total Cost
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.order_line" t-as="line">
+                            <td class="text-center">
+                                <span  t-esc="line_index + 1"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="line.product_qty"/>
+                            </td>
+                            <td>
+                                <span t-field="line.product_uom"/>
+                            </td>
+                            <td>
+                                <span t-field="line.name"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="line.price_unit"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="line.discount"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="line.price_tax"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="line.price_total"/>
+                            </td>
+                        </tr>
+                        <tr style="border:none !important;">
+                            <td colspan="4" style="border: none;">
+                                <br />
+                            </td>
+                            <td class="text-end">
+                                <span>
+                                
+                                    Total
+                                </span>
+                            </td>
+                             <td>
+                                <br />
+                            </td>
+                             <td>
+                                <br />
+                            </td>
+                            <td class="text-end">
+                                <span t-field="o.amount_total"/>
+                            </td>
+                        </tr>
+                        <tr style="border:none !important;">
+                            <td colspan="4" style="border: none;">
+                                <br />
+                            </td>
+                            <td class="text-end">
+                                <span>
+                                
+                                    PPN
+                                </span>
+                            </td>
+                             <td>
+                                <br />
+                            </td>
+                             <td>
+                                <br />
+                            </td>
+                            <td class="text-end">
+                                <span t-field="o.amount_tax"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+                   </table>
+
+                   <div class="row">
+                        <div class="col-6" t-field="o.notes" />
+                   </div>
+
+                   <table class="table table-bordered text-center mb-0">
+                        <tr>
+                            <td width="33%">
+                                Created By.
+                            </td>
+                            <td width="34%">
+                                Checked By.
+                            </td>
+                            <td>
+                                Approved By.
+                            </td>
+                        </tr>
+                        <t t-if="o.approval_line_ids">
+                            <t t-set="approver" t-value="o.approval_line_ids[-1].user_id"/>
+                            <t t-set="checked_by" t-value="o.approval_line_ids[0].user_id"/>
+                        </t>
+
+                        <tr>
+                            <td class="p-4">
+                                <span style="font-size:20px;" t-field="o.user_id" />
+                            </td>
+                            <td class="p-4">
+                                <span style="font-size:20px;" t-if="o.state in ('done','purchase') and checked_by" t-esc="checked_by.name" />
+                                <span style="font-size:20px;" t-if="o.state not in ('done','purchase')" >-</span>
+                            </td>
+                            <td class="p-4">
+                                <span style="font-size:20px;" t-if="o.state in ('done','purchase') and approver" t-esc="approver.name" />
+                                <span style="font-size:20px;" t-if="o.state not in ('done','purchase')" >-</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <br />
+                            </td>
+                        </tr>
+
+                        <table class="mt-0 table table-bordered">
+                        
+                            <tr>
+                                <td width="15%" class="p-1 text-start">
+                                    Delivery To
+                                </td>
+                                <!-- <td class="p-1 text-start">
+                                    :
+                                </td> -->
+                                <td class="p-1 text-start">
+                                    <span t-field="o.company_id.city"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="15%" class="p-1 text-start">
+                                    No. NPWP
+                                </td>
+                                <!-- <td class="p-1 text-start">
+                                    :
+                                </td> -->
+                                <td class="p-1 text-start">
+                                    <span t-field="o.company_id.vat"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="15%" class="p-1 text-start">
+                                    Address
+                                </td>
+                                <!-- <td class="p-1 text-start">
+                                    :
+                                </td> -->
+                                <td class="p-1 text-start">
+                                    <span t-field="o.company_id.street"/>
+                                    <span t-field="o.company_id.street"/>,
+                                    <span t-field="o.company_id.city"/>
+                                    <span t-field="o.company_id.country_id"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                   </table>
+
+                </div>
+                
+            </t>
+       </t>
+    </template>
+
+
+    
+
+</odoo>

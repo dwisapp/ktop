@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_payslip_view_form_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.view.form.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <field name="struct_id" position="after">
+                <field name="is_subsidi_driver" string="Subsidi?" invisible="not use_delivery_note"/>
+                <field name="nominal_subsidi_driver" string="Nominal Subsidi" invisible="not is_subsidi_driver and not use_delivery_note"/>
+            </field>
+            <xpath expr="//field[@name='worked_days_line_ids']//tree//field[@name='amount']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']//form//field[@name='amount']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <page name="worked_days_input" position="after">
+                <field name="use_delivery_note" invisible="1"/>
+                <page name="payment_per_delivery" string="Payment Per Delivery" invisible="not use_delivery_note">
+                
+                    <field name="payment_per_delivery_ids" readonly="1">
+                        <tree string="Payment Per Delivery">
+                        <field name="payment_per_delivery_id"/>
+                            <field name="quantity"/>
+                            <field name="amount"/>
+                            <field name="amount_total" sum="Total Komisi" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
